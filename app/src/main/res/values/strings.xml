@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MIHE</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="feed">Feed</string>
+    <string name="settings">Settings</string>
+    <string name="network">Network</string>
+    <string name="assistant">Assistant</string>
+    <string name="dashboard">Dashboard</string>
 </resources>
