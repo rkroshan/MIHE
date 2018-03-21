@@ -1,5 +1,6 @@
 package cubes.logic.mihe;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationItems.add(item4);
         bottomNavigationItems.add(item5);
 
+        bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
+        bottomNavigation.setAccentColor(Color.rgb(100,250,250));
+        bottomNavigation.setColored(true);
         bottomNavigation.addItems(bottomNavigationItems);
 
 
