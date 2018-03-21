@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "289421155997",
+    "firebase_url": "https://mihe-6c668.firebaseio.com",
+    "project_id": "mihe-6c668",
+    "storage_bucket": "mihe-6c668.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289421155997:android:c46d7dedb4f94d3b",
+        "android_client_info": {
+          "package_name": "cubes.logic.mihe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289421155997-qa2futrsm430ccl5ua90cas5bn02gd4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-KpPrJf1juqr26AwH5y5ifwSnwkmubNU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
