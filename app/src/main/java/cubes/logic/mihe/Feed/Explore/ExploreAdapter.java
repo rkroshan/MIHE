@@ -1,4 +1,4 @@
-package cubes.logic.mihe.Feed;
+package cubes.logic.mihe.Feed.Explore;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;

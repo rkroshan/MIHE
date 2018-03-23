@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import cubes.logic.mihe.Feed.Explore;
+import cubes.logic.mihe.Feed.Explore.Explore;
 import cubes.logic.mihe.Feed.Feed;
 
 
@@ -33,6 +34,7 @@ public class FeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.e(FeedFragment.class.toString(),"on create");
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
         ViewPager feed_viewPager = view.findViewById(R.id.feed_viewPager);
         setupViewPager(feed_viewPager);
@@ -42,7 +44,35 @@ public class FeedFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e(FeedFragment.class.toString(),"on start");
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(FeedFragment.class.toString(),"on resume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e(FeedFragment.class.toString(),"on pause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.e(FeedFragment.class.toString(),"on stop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e(FeedFragment.class.toString(),"on destroy");
+    }
     private void setupViewPager(ViewPager viewPager) {
 
 

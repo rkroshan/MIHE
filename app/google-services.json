@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "289421155997-05g0n4tgln869247qnjjljaeppepeqd7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cubes.logic.mihe",
+            "certificate_hash": "87196f63961d3876cac490256e8b7b777f5d7856"
+          }
+        },
+        {
           "client_id": "289421155997-qa2futrsm430ccl5ua90cas5bn02gd4r.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "289421155997-qa2futrsm430ccl5ua90cas5bn02gd4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
