@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import cubes.logic.mihe.Assistant.AssistantFragment_getstarted;
 import cubes.logic.mihe.Assistant.assistant_base;
 import cubes.logic.mihe.Explore.Explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Event_explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Motivation_Explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Product_explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Scheme_explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.ideas.ideas;
 import cubes.logic.mihe.Explore.Explore_Fragments.resouces.Resources;
 import cubes.logic.mihe.Explore.explore_base;
 import cubes.logic.mihe.Feed.Feed;
@@ -28,7 +33,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
         fragments.add(new NetworkFragment());
         fragments.add(new assistant_base());
         fragments.add(new DashboardFragment());
-        fragments.add(new Resources());
+        fragments.add(new Explore());
     }
 
     @Override

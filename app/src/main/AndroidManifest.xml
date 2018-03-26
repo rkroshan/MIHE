@@ -11,6 +11,7 @@
         android:name=".mihe"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan"
@@ -27,6 +28,7 @@
         <activity android:name=".TemporaryActivities.product_post"/>
         <activity android:name=".TemporaryActivities.schemes_post"/>
         <activity android:name=".TemporaryActivities.resources_post"/>
+        <activity android:name=".TemporaryActivities.ideas_post"/>
     </application>
 
 </manifest>

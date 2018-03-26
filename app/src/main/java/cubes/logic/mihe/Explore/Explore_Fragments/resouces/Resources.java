@@ -38,6 +38,7 @@ public class Resources extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.resources_frag,container,false);
         databaseReference = FirebaseDatabase.getInstance().getReference().child(StringVariables.RESOURCES);
+        databaseReference.keepSynced(true);
         recyclerView = view.findViewById(R.id.resouces_recylcerview);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         return view;

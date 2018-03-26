@@ -15,6 +15,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import cubes.logic.mihe.Explore.Explore_Fragments.Event_explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Motivation_Explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Product_explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Scheme_explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.ideas.ideas;
 import cubes.logic.mihe.Explore.Explore_Fragments.resouces.Resources;
 import cubes.logic.mihe.R;
 
@@ -91,18 +96,28 @@ class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
         public void onClick(View view) {
             switch (getAdapterPosition()){
                 case 0:
+                    Log.e("Ideas","onClick");
+                    setFragment(new ideas());
                     break;
                 case 1:
+                    Log.e("Product","onClick");
+                    setFragment(new Product_explore());
                     break;
                 case 2:
+                    Log.e("Motivation","onClick");
+                    setFragment(new Motivation_Explore());
                     break;
                 case 3:
                     Log.e("Resources","onClick");
                     setFragment(new Resources());
                     break;
                 case 4:
+                    Log.e("Events","onClick");
+                    setFragment(new Event_explore());
                     break;
                 case 5:
+                    Log.e("Schemes","onClick");
+                    setFragment(new Scheme_explore());
                     break;
             }
         }

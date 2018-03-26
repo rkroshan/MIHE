@@ -103,7 +103,7 @@ public class AssistantFragment_idea extends Fragment implements View.OnClickList
 
             case R.id.submit_idea:
                 String idea = enter_idea.getText().toString();
-                Log.e("idea",idea);
+                Log.e("ideas",idea);
                 if (idea.isEmpty()) {
                     Toast.makeText(getContext(), "Please Give Your Idea", Toast.LENGTH_SHORT).show();
                 } else {
