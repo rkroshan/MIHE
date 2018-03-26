@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +26,7 @@
         <activity android:name=".TemporaryActivities.motivation_post"/>
         <activity android:name=".TemporaryActivities.product_post"/>
         <activity android:name=".TemporaryActivities.schemes_post"/>
+        <activity android:name=".TemporaryActivities.resources_post"/>
     </application>
 
 </manifest>

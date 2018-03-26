@@ -13,5 +13,8 @@
     <item
         android:id="@+id/schemes_post"
         android:title="Schemes Post" />
+    <item
+        android:id="@+id/resources_post"
+        android:title="Resources Post" />
 
 </menu>

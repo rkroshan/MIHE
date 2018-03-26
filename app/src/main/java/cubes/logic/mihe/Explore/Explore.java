@@ -1,4 +1,4 @@
-package cubes.logic.mihe.Feed.Explore;
+package cubes.logic.mihe.Explore;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -41,6 +41,7 @@ public class Explore extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.explore_frag,container,false);
+        Log.e("Explore ","started");
        // getScreenSize();
         explore_recyclerview = view.findViewById(R.id.explore_recyclerview);
         gridLayoutManager = new GridLayoutManager(getContext(),2);
