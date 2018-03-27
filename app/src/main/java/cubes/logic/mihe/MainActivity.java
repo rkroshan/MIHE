@@ -1,15 +1,28 @@
 package cubes.logic.mihe;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
 
 import java.util.ArrayList;
+
+import cubes.logic.mihe.Feed.Feed;
+import cubes.logic.mihe.TemporaryActivities.events_post;
+import cubes.logic.mihe.TemporaryActivities.ideas_post;
+import cubes.logic.mihe.TemporaryActivities.motivation_post;
+import cubes.logic.mihe.TemporaryActivities.product_post;
+import cubes.logic.mihe.TemporaryActivities.resources_post;
+import cubes.logic.mihe.TemporaryActivities.schemes_post;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,10 +32,43 @@ public class MainActivity extends AppCompatActivity {
     private AHBottomNavigation bottomNavigation;
     private ArrayList<AHBottomNavigationItem> bottomNavigationItems = new ArrayList<>();
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.temp_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.motivation_post:
+                startActivity(new Intent(getApplicationContext(),motivation_post.class));
+                break;
+            case R.id.product_post:
+                startActivity(new Intent(getApplicationContext(),product_post.class));
+                break;
+            case R.id.events_post:
+                startActivity(new Intent(getApplicationContext(),events_post.class));
+                break;
+            case R.id.schemes_post:
+                startActivity(new Intent(getApplicationContext(),schemes_post.class));
+                break;
+            case R.id.resources_post:
+                startActivity(new Intent(getApplicationContext(),resources_post.class));
+                break;
+            case R.id.ideas_post:
+                startActivity(new Intent(getApplicationContext(),ideas_post.class));
+                break;
+            default:
+            return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(MainActivity.class.toString(),"on create");
         setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -50,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationItems.add(item4);
         bottomNavigationItems.add(item5);
 
+        bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
+        bottomNavigation.setAccentColor(Color.rgb(100,250,250));
+        bottomNavigation.setColored(true);
         bottomNavigation.addItems(bottomNavigationItems);
 
 
@@ -62,5 +111,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigation.setTranslucentNavigationEnabled(true);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e(MainActivity.class.toString(),"on start");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(MainActivity.class.toString(),"on resume");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e(MainActivity.class.toString(),"on pause");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.e(MainActivity.class.toString(),"on stop");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e(MainActivity.class.toString(),"on destroy");
     }
 }

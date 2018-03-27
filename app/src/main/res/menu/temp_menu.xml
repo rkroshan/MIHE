@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/motivation_post"
+        android:title="Motivation Post" />
+    <item
+        android:id="@+id/product_post"
+        android:title="Product Post" />
+    <item
+        android:id="@+id/events_post"
+        android:title="Events Post" />
+    <item
+        android:id="@+id/schemes_post"
+        android:title="Schemes Post" />
+    <item
+        android:id="@+id/resources_post"
+        android:title="Resources Post" />
+    <item
+        android:id="@+id/ideas_post"
+        android:title="IDEAS Post" />
+
+</menu>
