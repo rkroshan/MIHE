@@ -2,13 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cubes.logic.mihe">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".mihe"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".mihe"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -19,11 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".TemporaryActivities.events_post"/>
-        <activity android:name=".TemporaryActivities.motivation_post"/>
-        <activity android:name=".TemporaryActivities.product_post"/>
-        <activity android:name=".TemporaryActivities.schemes_post"/>
+        <activity android:name=".TemporaryActivities.events_post" />
+        <activity android:name=".TemporaryActivities.motivation_post" />
+        <activity android:name=".TemporaryActivities.product_post" />
+        <activity android:name=".TemporaryActivities.schemes_post" />
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".SubmissionActivity"></activity>
     </application>
 
 </manifest>

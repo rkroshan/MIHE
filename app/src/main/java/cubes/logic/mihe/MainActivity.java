@@ -1,6 +1,7 @@
 package cubes.logic.mihe;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -60,8 +61,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e(MainActivity.class.toString(),"on create");
         setContentView(R.layout.activity_main);
+        SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
+        String id=sharedPreferences.getString("id",null);
+
+//        if(id==null) {
+//            startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
+//            finish();
+//        }
+//        else
+            setupBottomNav();
+    }
+
+
+    private void setupBottomNav() {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
