@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new MainViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
-
         AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.feed, R.drawable.ic_settings_white_24dp, R.color.colorPrimary);
         AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.network, R.drawable.ic_settings_white_24dp, R.color.colorPrimary);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.assistant, R.drawable.ic_settings_white_24dp, R.color.colorAccent);
