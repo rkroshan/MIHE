@@ -1,8 +1,12 @@
-package cubes.logic.mihe.Feed.Explore;
+package cubes.logic.mihe.Explore;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +15,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import cubes.logic.mihe.Explore.Explore_Fragments.Event_explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Motivation_Explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Product_explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.Scheme_explore;
+import cubes.logic.mihe.Explore.Explore_Fragments.ideas.ideas;
+import cubes.logic.mihe.Explore.Explore_Fragments.resouces.Resources;
 import cubes.logic.mihe.R;
 
 /**
@@ -72,13 +82,51 @@ class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         LinearLayout explorer_layout;
         TextView explorer_element_text;
         public ViewHolder(View itemView) {
             super(itemView);
             explorer_layout = itemView.findViewById(R.id.explorer_layout);
             explorer_element_text = itemView.findViewById(R.id.explorer_element_text);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (getAdapterPosition()){
+                case 0:
+                    Log.e("Ideas","onClick");
+                    setFragment(new ideas());
+                    break;
+                case 1:
+                    Log.e("Product","onClick");
+                    setFragment(new Product_explore());
+                    break;
+                case 2:
+                    Log.e("Motivation","onClick");
+                    setFragment(new Motivation_Explore());
+                    break;
+                case 3:
+                    Log.e("Resources","onClick");
+                    setFragment(new Resources());
+                    break;
+                case 4:
+                    Log.e("Events","onClick");
+                    setFragment(new Event_explore());
+                    break;
+                case 5:
+                    Log.e("Schemes","onClick");
+                    setFragment(new Scheme_explore());
+                    break;
+            }
+        }
+
+        private void setFragment(android.support.v4.app.Fragment fragment) {
+            android.support.v4.app.FragmentTransaction fragmentTransaction = ((FragmentActivity) itemView.getContext()).getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.container,fragment)
+                    .addToBackStack(fragment.toString())
+                    .commit();
         }
     }
 }

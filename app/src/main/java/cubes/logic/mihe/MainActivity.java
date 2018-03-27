@@ -19,8 +19,10 @@ import java.util.ArrayList;
 
 import cubes.logic.mihe.Feed.Feed;
 import cubes.logic.mihe.TemporaryActivities.events_post;
+import cubes.logic.mihe.TemporaryActivities.ideas_post;
 import cubes.logic.mihe.TemporaryActivities.motivation_post;
 import cubes.logic.mihe.TemporaryActivities.product_post;
+import cubes.logic.mihe.TemporaryActivities.resources_post;
 import cubes.logic.mihe.TemporaryActivities.schemes_post;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.schemes_post:
                 startActivity(new Intent(getApplicationContext(),schemes_post.class));
+                break;
+            case R.id.resources_post:
+                startActivity(new Intent(getApplicationContext(),resources_post.class));
+                break;
+            case R.id.ideas_post:
+                startActivity(new Intent(getApplicationContext(),ideas_post.class));
                 break;
             default:
             return super.onOptionsItemSelected(item);

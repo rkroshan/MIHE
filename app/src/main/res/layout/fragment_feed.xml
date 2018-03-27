@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 
-    <android.support.design.widget.CoordinatorLayout
+   <!-- <android.support.design.widget.CoordinatorLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -26,7 +26,7 @@
                 app:tabPaddingStart="-1dp"
                 app:tabPaddingEnd="-1dp"
                 app:tabSelectedTextColor="@color/colorPrimary" />
-        </android.support.design.widget.AppBarLayout>
+        </android.support.design.widget.AppBarLayout>-->
 
         <android.support.v4.view.ViewPager
             android:id="@+id/feed_viewPager"
@@ -34,6 +34,6 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    </android.support.design.widget.CoordinatorLayout>
+    <!--</android.support.design.widget.CoordinatorLayout>-->
 
 </RelativeLayout>

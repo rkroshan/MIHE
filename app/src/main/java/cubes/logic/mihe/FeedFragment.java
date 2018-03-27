@@ -1,3 +1,4 @@
+/*
 package cubes.logic.mihe;
 
 
@@ -15,13 +16,15 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import cubes.logic.mihe.Feed.Explore.Explore;
+import cubes.logic.mihe.Explore.Explore;
 import cubes.logic.mihe.Feed.Feed;
 
 
+*/
 /**
  * A simple {@link Fragment} subclass.
- */
+ *//*
+
 public class FeedFragment extends Fragment {
 
     public FeedFragment() {
@@ -38,9 +41,9 @@ public class FeedFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
         ViewPager feed_viewPager = view.findViewById(R.id.feed_viewPager);
         setupViewPager(feed_viewPager);
-        TabLayout feed_tabs = view.findViewById(R.id.feed_tabs);
-        feed_tabs.setTabGravity(TabLayout.GRAVITY_FILL);
-        feed_tabs.setupWithViewPager(feed_viewPager);
+       // TabLayout feed_tabs = view.findViewById(R.id.feed_tabs);
+        //feed_tabs.setTabGravity(TabLayout.GRAVITY_FILL);
+        //feed_tabs.setupWithViewPager(feed_viewPager);
         return view;
     }
 
@@ -117,3 +120,4 @@ public class FeedFragment extends Fragment {
 
 
 }
+*/
