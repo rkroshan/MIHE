@@ -7,7 +7,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import cubes.logic.mihe.Assistant.assistant_base;
+import cubes.logic.mihe.Assistant.AssistantChatFragment;
 import cubes.logic.mihe.Explore.explore_base;
 import cubes.logic.mihe.Feed.Feed;
 
@@ -24,7 +24,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
         fragments.clear();
         fragments.add(new Feed());
         fragments.add(new NetworkFragment());
-        fragments.add(new assistant_base());
+        fragments.add(new AssistantChatFragment());
         fragments.add(new DashboardFragment());
         fragments.add(new explore_base());
     }

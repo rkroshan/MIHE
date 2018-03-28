@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +43,7 @@ public class assistant extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.assistant_main_yes:
-                setFragment(new assistant_chat());
+                setFragment(new AssistantChatFragment());
                 break;
             case R.id.assistant_main_no:
                 assistant_main_no_textview.setVisibility(View.VISIBLE);
