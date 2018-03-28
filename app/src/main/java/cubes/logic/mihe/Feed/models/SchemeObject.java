@@ -11,22 +11,14 @@ import cubes.logic.mihe.R;
  */
 
 public class SchemeObject {
-    private String NAME, DESCRIPTION, LINK;
+    private String IMAGE, LINK;
 
-    public String getNAME() {
-        return NAME;
+    public String getIMAGE() {
+        return IMAGE;
     }
 
-    public void setNAME(String NAME) {
-        this.NAME = NAME;
-    }
-
-    public String getDESCRIPTION() {
-        return DESCRIPTION;
-    }
-
-    public void setDESCRIPTION(String DESCRIPTION) {
-        this.DESCRIPTION = DESCRIPTION;
+    public void setIMAGE(String IMAGE) {
+        this.IMAGE = IMAGE;
     }
 
     public String getLINK() {
@@ -36,5 +28,4 @@ public class SchemeObject {
     public void setLINK(String LINK) {
         this.LINK = LINK;
     }
-
 }

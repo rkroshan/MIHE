@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -51,9 +52,8 @@ public class Scheme_explore extends Fragment {
             @Override
             protected void populateViewHolder(ViewHolders.SCHEMESViewHolder viewHolder, SchemeObject model, int position) {
                 Log.e("SchemeRef viewholder", "working");
-                final String link = model.getLINK();
-                viewHolder.scheme_name.setText(model.getNAME());
-                viewHolder.scheme_description.setText(model.getDESCRIPTION());
+                Glide.with(getContext()).load(model.getIMAGE()).placeholder(R.mipmap.ic_launcher).into(viewHolder.scheme_image);
+                viewHolder.setLink(model.getLINK(),getContext());
                /* viewHolder.event_details.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

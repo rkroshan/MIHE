@@ -34,9 +34,9 @@ public class product_post extends AppCompatActivity {
 
     private static final int READ_EXTERNAL_STORAGE = 1;
     private int SELECT_PICTURE = 2;
-    private Uri uri=null;
+    private Uri uri = null;
     ImageView product_imageview;
-    EditText product_category, product_name, product_description;
+    EditText product_category, product_name, product_description, product_makers;
     Button product_post;
 
     @Override
@@ -52,6 +52,7 @@ public class product_post extends AppCompatActivity {
         product_name = findViewById(R.id.product_name);
         product_description = findViewById(R.id.product_description);
         product_post = findViewById(R.id.product_post);
+        product_makers = findViewById(R.id.product_makers);
 
         product_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,20 +67,22 @@ public class product_post extends AppCompatActivity {
                 final String category = product_category.getText().toString();
                 final String name = product_name.getText().toString();
                 final String description = product_description.getText().toString();
-                if(uri!=null && !(name.isEmpty() &&category.isEmpty() && description.isEmpty()) ){
+                final String makers = product_makers.getText().toString();
+                if (uri != null && !(name.isEmpty() && category.isEmpty() && description.isEmpty())) {
                     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(StringVariables.PRODUCT_POST).push();
                     StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(StringVariables.PRODUCT_POST);
                     storageReference.child(uri.getLastPathSegment()).putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            String data = taskSnapshot.getDownloadUrl()+"";
+                            String data = taskSnapshot.getDownloadUrl() + "";
                             databaseReference.child(StringVariables.NAME).setValue(name);
                             databaseReference.child(StringVariables.CATEGORY).setValue(category);
                             databaseReference.child(StringVariables.DESCRIPTION).setValue(description);
+                            databaseReference.child(StringVariables.MAKERS).setValue(makers);
                             databaseReference.child(StringVariables.IMAGE).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                             });
@@ -91,13 +94,11 @@ public class product_post extends AppCompatActivity {
     }
 
     private void checkpermission() {
-        if(ContextCompat.checkSelfPermission(this,android.Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED)
-        {
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             open_gallery();
-        }
-        else{
+        } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},READ_EXTERNAL_STORAGE);
+                requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, READ_EXTERNAL_STORAGE);
             }
         }
     }
@@ -105,10 +106,10 @@ public class product_post extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==READ_EXTERNAL_STORAGE&&grantResults[0]== PackageManager.PERMISSION_GRANTED){
+        if (requestCode == READ_EXTERNAL_STORAGE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             open_gallery();
-        }else{
-            Toast.makeText(getApplicationContext(),"Access denied",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Access denied", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -116,13 +117,13 @@ public class product_post extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select Picture"),SELECT_PICTURE);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==SELECT_PICTURE){
+        if (requestCode == SELECT_PICTURE) {
             uri = data.getData();
             Glide.with(this).load(uri).placeholder(R.mipmap.ic_launcher).into(product_imageview);
         }

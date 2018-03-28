@@ -109,6 +109,7 @@ public class Feed extends Fragment {
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(viewHolder.motivation_imageview);
                 viewHolder.motivation_textview.setText(model.getNAME());
+                viewHolder.setLink(model.getLINK(),getContext());
             }
         };
 
@@ -128,6 +129,7 @@ public class Feed extends Fragment {
                 viewHolder.product_category.setText(model.getCATEGORY());
                 viewHolder.product_description.setText(model.getDESCRIPTION());
                 viewHolder.product_name.setText(model.getNAME());
+                viewHolder.product_makers.setText(model.getMAKERS());
             }
         };
 
@@ -167,9 +169,8 @@ public class Feed extends Fragment {
             @Override
             protected void populateViewHolder(ViewHolders.SCHEMESViewHolder viewHolder, SchemeObject model, int position) {
                 Log.e("SchemeRef viewholder", "working");
-                final String link = model.getLINK();
-                viewHolder.scheme_name.setText(model.getNAME());
-                viewHolder.scheme_description.setText(model.getDESCRIPTION());
+                Glide.with(getContext()).load(model.getIMAGE()).placeholder(R.mipmap.ic_launcher).into(viewHolder.scheme_image);
+                viewHolder.setLink(model.getLINK(),getContext());
                /* viewHolder.event_details.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
