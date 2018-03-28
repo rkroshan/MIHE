@@ -15,7 +15,15 @@ import cubes.logic.mihe.R;
 
 public class MotivationObject {
 
-    private String NAME, IMAGE;
+    private String NAME, IMAGE, LINK;
+
+    public String getLINK() {
+        return LINK;
+    }
+
+    public void setLINK(String LINK) {
+        this.LINK = LINK;
+    }
 
     public String getNAME() {
         return NAME;

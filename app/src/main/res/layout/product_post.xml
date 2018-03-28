@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -13,32 +12,44 @@
             android:id="@+id/product_imageview"
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_launcher" />
+
         <EditText
             android:id="@+id/product_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#aaa"
-            android:hint="Software"/>
+            android:hint="Software" />
+
         <EditText
             android:id="@+id/product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="product name"
             android:textAppearance="?android:textAppearanceMedium"
-            android:textColor="#000"/>
+            android:textColor="#000" />
+
         <EditText
             android:id="@+id/product_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="description"
             android:textAppearance="?android:textAppearanceSmall"
-            android:textColor="#000"/>
+            android:textColor="#000" />
+
+        <EditText
+            android:id="@+id/product_makers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="by Arpit luyia"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#000" />
+
         <Button
             android:id="@+id/product_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="POST"/>
+            android:text="POST" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

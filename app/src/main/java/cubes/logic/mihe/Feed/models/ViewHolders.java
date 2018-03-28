@@ -1,7 +1,11 @@
 package cubes.logic.mihe.Feed.models;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,18 +39,35 @@ public class ViewHolders {
     public static class MOTIVATIONViewHolder extends RecyclerView.ViewHolder {
         public ImageView motivation_imageview;
         public TextView motivation_textview;
+        String URL;
+        Context mcontext;
 
         public MOTIVATIONViewHolder(View itemView) {
             super(itemView);
             motivation_imageview = itemView.findViewById(R.id.motivation_imageview);
             motivation_textview = itemView.findViewById(R.id.motivation_textview);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    if(URL!=null) {
+                        intent.setData(Uri.parse(URL));
+                        mcontext.startActivity(intent);
+                    }
+                }
+            });
+        }
+
+        public void setLink(String url, Context context){
+           URL = url;
+           mcontext = context;
         }
     }
 
     //view holder
     public static class PRODUCTViewHolder extends RecyclerView.ViewHolder {
         public ImageView product_imageview;
-        public TextView product_category, product_name, product_description;
+        public TextView product_category, product_name, product_description,product_makers;
 
         public PRODUCTViewHolder(View itemView) {
             super(itemView);
@@ -54,19 +75,34 @@ public class ViewHolders {
             product_category = itemView.findViewById(R.id.product_category);
             product_name = itemView.findViewById(R.id.product_name);
             product_description = itemView.findViewById(R.id.product_description);
+            product_makers = itemView.findViewById(R.id.product_makers);
         }
     }
 
     //view holder
     public static class SCHEMESViewHolder extends RecyclerView.ViewHolder {
-        public TextView scheme_name, scheme_description, scheme_viewdetails, event_details;
-
+        public ImageView scheme_image;
+        String URL = null;
+        Context mcontext = null;
+        Button scheme_viewdetails;
         public SCHEMESViewHolder(View itemView) {
             super(itemView);
-            scheme_name = itemView.findViewById(R.id.scheme_name);
-            scheme_description = itemView.findViewById(R.id.scheme_description);
+            scheme_image = itemView.findViewById(R.id.scheme_image);
             scheme_viewdetails = itemView.findViewById(R.id.scheme_viewdetails);
-            event_details = itemView.findViewById(R.id.event_details);
+            scheme_viewdetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    if(URL!=null) {
+                        intent.setData(Uri.parse(URL));
+                        mcontext.startActivity(intent);
+                    }
+                }
+            });
+        }
+        public void setLink(String url, Context context){
+            URL = url;
+            mcontext = context;
         }
     }
 }
