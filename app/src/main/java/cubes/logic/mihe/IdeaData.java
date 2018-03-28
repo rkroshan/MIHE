@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class IdeaData {
     String title,details,link,thinker;
     ArrayList<String>inv_stars,user_stars;
+    int upvotes;
 
     public IdeaData() {
 

@@ -12,6 +12,8 @@ public class ProductData {
     String link;
     String image;
 
+    int upvotes;
+
     public String getCategory() {
         return category;
     }
@@ -21,7 +23,7 @@ public class ProductData {
     }
 
     String category;
-    ArrayList<String> makers,inv_stars,user_stars;
+    ArrayList<String> makers, inv_stars, user_stars;
 
     public ProductData() {
 
@@ -64,7 +66,7 @@ public class ProductData {
         this.details = details;
         this.link = link;
         this.image = image;
-        this.category=category;
+        this.category = category;
         this.makers = makers;
         this.inv_stars = inv_stars;
         this.user_stars = user_stars;
@@ -124,5 +126,13 @@ public class ProductData {
 
     public void setUser_stars(ArrayList<String> user_stars) {
         this.user_stars = user_stars;
+    }
+
+    public int getUpvotes() {
+        return upvotes;
+    }
+
+    public void setUpvotes(int upvotes) {
+        this.upvotes = upvotes;
     }
 }
