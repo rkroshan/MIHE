@@ -6,12 +6,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+
+        >
 
         <ImageView
             android:id="@+id/event_imageview"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_margin="8dp"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
@@ -19,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pratibimb"
+            android:gravity="center_horizontal"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="#000" />
 
@@ -59,6 +66,7 @@
                 android:id="@+id/event_details"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+
                 android:layout_height="wrap_content"
                 android:text="VIEW DETAILS"/>
         </LinearLayout>

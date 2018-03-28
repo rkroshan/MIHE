@@ -35,13 +35,13 @@ public class assistant_base extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.base_assistant, container, false);
 
-        fragment = new AssistantFragment_getstarted();
+        /*fragment = new AssistantFragment_getstarted();
 
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container, fragment)
                 .addToBackStack("assistant_base")
                 .commit();
-        return view;
+*/        return view;
 
     }
 }

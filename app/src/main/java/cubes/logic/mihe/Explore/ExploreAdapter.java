@@ -124,7 +124,7 @@ class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
 
         private void setFragment(android.support.v4.app.Fragment fragment) {
             android.support.v4.app.FragmentTransaction fragmentTransaction = ((FragmentActivity) itemView.getContext()).getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container,fragment)
+            fragmentTransaction.replace(R.id.explore_container,fragment)
                     .addToBackStack(fragment.toString())
                     .commit();
         }
