@@ -13,6 +13,8 @@
             android:id="@+id/product_imageview"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_margin="8dp"
             android:src="@mipmap/ic_launcher"/>
         <TextView
             android:id="@+id/product_category"

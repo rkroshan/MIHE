@@ -9,42 +9,122 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingBottom="80dp">
+        android:paddingBottom="80dp"
+        android:background="#fff"
+        >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="25dp"
+        android:background="@color/color_green"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Motivation" />
-
+            android:text="  Motivation  "
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            />
+</RelativeLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/motivation_recyclerview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:background="@color/color_green"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Products" />
+            android:text="  Products  "
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            />
+        </RelativeLayout>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/product_recyclerciew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Events" />
+            android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="25dp"
+                android:background="@color/color_green"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            android:text="  Events  "
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            />
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
             android:id="@+id/events_recyclerview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:background="@color/color_green"/>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Schemes" />
+            android:text="  Schemes  "
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            />
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/schemes_recyclerview"
