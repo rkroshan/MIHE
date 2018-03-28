@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.Map;
 
+import cubes.logic.mihe.MainActivity;
 import cubes.logic.mihe.R;
 
 /**
@@ -46,7 +47,8 @@ public class AssistantChatFragment extends Fragment {
 
     void addToHistory(ChatModel chatModel) {
         chatModels.add(chatModel);
-        assistantChat_adapter.notifyDataSetChanged();
+        assistantChat_adapter.notifyItemInserted(chatModels.size()-1);
+        assistantChat_adapter.notifyItemChanged(chatModels.size()-2);
         StringBuilder str=new StringBuilder();
         for(ChatModel c: chatModels)
             str.append(c.getId()+",");
@@ -57,9 +59,11 @@ public class AssistantChatFragment extends Fragment {
     }
 
     void removeFrom(int n) {
+        int removed=chatModels.size()-n;
         for(int i=n;i<chatModels.size();)
             chatModels.remove(chatModels.get(i));
-        assistantChat_adapter.notifyDataSetChanged();
+        assistantChat_adapter.notifyItemRangeRemoved(n,removed);
+        assistantChat_adapter.notifyItemChanged(n-1);
         StringBuilder str=new StringBuilder();
         for(ChatModel c: chatModels)
             str.append(c.getId()+",");
@@ -77,5 +81,34 @@ public class AssistantChatFragment extends Fragment {
         assistant_chat_recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         assistantChat_adapter = new AssistantChatAdapter(chatModels, getActivity(),AssistantChatFragment.this);
         assistant_chat_recyclerview.setAdapter(assistantChat_adapter);
+    }
+
+    void loadStuff(String str) {
+        switch (str) {
+            case ChatModel.business_model:
+                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                break;
+            case ChatModel.contest:
+                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                break;
+            case ChatModel.hiring:
+                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                break;
+            case ChatModel.insights:
+                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                break;
+            case ChatModel.network:
+                ((MainActivity)getActivity()).setAdapterPage(1,null);
+                break;
+            case ChatModel.products:
+                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                break;
+            case ChatModel.resources:
+                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                break;
+            case ChatModel.skills:
+                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                break;
+        }
     }
 }

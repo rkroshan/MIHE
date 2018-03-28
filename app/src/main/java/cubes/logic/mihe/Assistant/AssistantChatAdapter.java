@@ -132,12 +132,13 @@ class AssistantChatAdapter extends RecyclerView.Adapter<AssistantChatAdapter.Vie
         }
         else {
             holder.extra.setVisibility(View.VISIBLE);
+            holder.b1.setText(chatModel.getOPTION1());
             holder.b1.setVisibility(View.VISIBLE);
             holder.b1.setText(chatModel.getOPTION1());
             holder.b1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    chatFragment.loadStuff(chatModel.getOPTION1());
                 }
             });
 
@@ -147,9 +148,12 @@ class AssistantChatAdapter extends RecyclerView.Adapter<AssistantChatAdapter.Vie
                 holder.b2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        chatFragment.loadStuff(chatModel.getOPTION2());
                     }
                 });
+            }
+            else {
+                holder.b2.setVisibility(View.GONE);
             }
 
             if(chatModel.getOPTION3()!=null) {
@@ -158,9 +162,12 @@ class AssistantChatAdapter extends RecyclerView.Adapter<AssistantChatAdapter.Vie
                 holder.b3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        chatFragment.loadStuff(chatModel.getOPTION3());
                     }
                 });
+            }
+            else {
+                holder.b3.setVisibility(View.GONE);
             }
 
             if(chatModel.getOPTION4()!=null) {
@@ -169,10 +176,12 @@ class AssistantChatAdapter extends RecyclerView.Adapter<AssistantChatAdapter.Vie
                 holder.b4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        chatFragment.loadStuff(chatModel.getOPTION4());
                     }
                 });
             }
+            else
+                holder.b4.setVisibility(View.GONE);
             //other stuff
         }
     }
@@ -204,7 +213,7 @@ class AssistantChatAdapter extends RecyclerView.Adapter<AssistantChatAdapter.Vie
             b2 = itemView.findViewById(R.id.chat_extra_button2);
             b3 = itemView.findViewById(R.id.chat_extra_button3);
             b4 = itemView.findViewById(R.id.chat_extra_button4);
-            b5 = itemView.findViewById(R.id.chat_extra_button5);
+//            b5 = itemView.findViewById(R.id.chat_extra_button5);
             main= itemView.findViewById(R.id.chat_option_layout);
             extra=itemView.findViewById(R.id.chat_extra_option_layout);
         }

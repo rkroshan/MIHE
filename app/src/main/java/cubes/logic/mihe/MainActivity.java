@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void setAdapterPage(int pos,Bundle args) {
+        bottomNavigation.setCurrentItem(pos);
+        bottomNavigation.restoreBottomNavigation();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

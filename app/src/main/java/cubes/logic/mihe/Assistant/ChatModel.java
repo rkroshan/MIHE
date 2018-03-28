@@ -7,7 +7,9 @@ import java.util.HashMap;
  */
 
 public class ChatModel {
-    
+
+    static final String skills = "Skills", resources = "Resources", network = "Network", hiring = "Hiring", insights = "Insights", business_model = "Resources for business model", products = "Product Exposure", contest = "Participate in monthly contest";
+
     private String IMAGEDATA, QUESTION, OPTION_YES, OPTION_NO, OPTION1, OPTION2, OPTION3, OPTION4;
     private int id;
 
@@ -22,8 +24,9 @@ public class ChatModel {
         this.OPTION3 = OPTION3;
         this.OPTION4 = OPTION4;
         this.id = id;
-        
+
     }
+
     public int getId() {
         return id;
     }
@@ -98,22 +101,26 @@ public class ChatModel {
 
     public static final class CreateData {
 
-        public static HashMap<Integer,ChatModel> map = new HashMap<>();
+        public static HashMap<Integer, ChatModel> map = new HashMap<>();
 
         static {
-            map.put(1,(new ChatModel(null, "Do you have an idea ? ", "YES", "NO", null, null, null, null, 1)));
-            map.put(2,(new ChatModel(null, "Do you know how to implement that idea ? ", "YES", "NO", null, null, null, null, 2)));
-            map.put(3,(new ChatModel(null, "Do you have ambition to become a leader", "YES, Absolutely", "No, I want somthing else", null, null, null, null, 3)));
-            map.put(4,(new ChatModel(null, "Do you have a team ?", "YES", "NO, but i want it", null, null, null, null, 4)));
-            map.put(5,(new ChatModel(null, "We provide resources required to accomplish your idea", null, null, null, null, null, null, 5)));
-            map.put(6,(new ChatModel(null, "We provide a variety of resources", null, null, null, null, null, null, 6)));
-            map.put(7,(new ChatModel(null, "Well you can get hire, create your team or invest in a product through our app", null, null, null, null, null, null, 7)));
-            map.put(8,(new ChatModel(null, "our app gives you a opportunity to get your idea to incubation center, Do you want to enter in it?", "Yes, Of Course", "No", null, null, null, null, 8)));
-            map.put(9,(new ChatModel(null, "You can find people of your interest in our E-NETWORK", null, null, null, null, null, null, 9)));
-            map.put(16,(new ChatModel(null, "Enter contest here", null, null, null, null, null, null, 16)));
-            map.put(17,(new ChatModel(null, "Well we can help you in these ways", null, null, null, null, null, null, 17)));
+            map.put(1, (new ChatModel(null, "Do you have an idea ? ", "YES", "NO", null, null, null, null, 1)));
+            map.put(2, (new ChatModel(null, "Do you know how to implement that idea ? ", "YES", "NO", null, null, null, null, 2)));
+            map.put(3, (new ChatModel(null, "Do you have ambition to become a leader", "YES, Absolutely", "No, I want somthing else", null, null, null, null, 3)));
+            map.put(4, (new ChatModel(null, "Do you have a team ?", "YES", "NO, but i want it", null, null, null, null, 4)));
+            map.put(5, (new ChatModel(null, "We provide resources required to accomplish your idea", null, null, resources, insights, null, null, 5)));
+            map.put(6, (new ChatModel(null, "Let us get started in your path towards reaching your dream in leading a startup. Here are some helpful resources for you", null, null, resources, network, insights, products, 6)));
+            map.put(7, (new ChatModel(null, "Well you can get hire, create your team or invest in a product through our app", null, null, network, hiring, insights, null, 7)));
+            map.put(8, (new ChatModel(null, "our app gives you a opportunity to get your idea to incubation center, Do you want to enter in it?", "Yes, Of Course", "No", null, null, null, null, 8)));
+            map.put(9, (new ChatModel(null, "You can find people of your interest in our E-NETWORK", null, null, network, null, null, null, 9)));
+            map.put(16, (new ChatModel(null, "Enter contest here", null, null, contest, null, null, null, 16)));
+            map.put(17, (new ChatModel(null, "Do you need help regarding monetisation and business model?", "Yes, I need help in business plan", "No, I have business plan", null, null, null, null, 17)));
+            map.put(34, (new ChatModel(null, "Here are some resources for helping you in making your business model", null, null, business_model, null, null, null, 17)));
+            map.put(35, (new ChatModel(null, "We can provide your startup exposrure, and help in making a team for your company", null, null, products, network, null, null, 17)));
+
         }
-        public static HashMap<Integer,ChatModel> getValues() {
+
+        public static HashMap<Integer, ChatModel> getValues() {
             return map;
         }
     }
