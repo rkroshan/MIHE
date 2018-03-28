@@ -41,7 +41,7 @@ public class Explore extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.explore_frag,container,false);
-        Log.e("Explore ","started");
+        Log.e("Explore ",getActivity().getSupportFragmentManager().getFragments().toString());
        // getScreenSize();
         explore_recyclerview = view.findViewById(R.id.explore_recyclerview);
         gridLayoutManager = new GridLayoutManager(getContext(),2);
@@ -58,4 +58,6 @@ public class Explore extends Fragment {
         width = displayMetrics.widthPixels;
         Log.e("mlist----",height+"");
     }
+
+
 }

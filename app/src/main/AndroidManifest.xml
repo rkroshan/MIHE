@@ -9,13 +9,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:name=".mihe"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            >
+ android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +28,8 @@
         <activity android:name=".TemporaryActivities.schemes_post"/>
         <activity android:name=".TemporaryActivities.resources_post"/>
         <activity android:name=".TemporaryActivities.ideas_post"/>
+        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".SubmissionActivity"></activity>
     </application>
 
 </manifest>
