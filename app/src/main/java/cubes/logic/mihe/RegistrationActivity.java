@@ -125,10 +125,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
     void Event() {
         String title = "", details = "", image = "", link = "", time = "", venue = "", ecellcode = "";
-        EventsData eventsData = new EventsData(title, details, image, link, time, venue, ecellcode);
+        EventsData eventsData = new EventsData(title, details, image, link, time, venue, ecellcode,"");
         databaseReference.child("events").push().setValue(eventsData);
-
-
     }
 
 }

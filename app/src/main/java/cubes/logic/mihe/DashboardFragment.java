@@ -28,15 +28,17 @@ public class DashboardFragment extends Fragment {
     ArrayList<IdeaData> userIdeas = new ArrayList<>();
     ArrayList<ProductData> userProducts = new ArrayList<>();
     ArrayList<SubmissionData> userSubmissions = new ArrayList<>();
+    ArrayList<EventsData> userEvents = new ArrayList<>();
 
-    TextView name,handleText,specialisation, location, submissions_text, ideas_text, products_text;
+    TextView name, handleText, specialisation, location, submissions_text, ideas_text, products_text,events_text;
     ImageView image, web, fb, mail, linkedIn, twitter, gplus, github, more;
 
-    String handle="-L8S3DxEUZsQ_pVodMer";
+    String handle = "-L8S3DxEUZsQ_pVodMer";
     SubmissionAdapter submissionsAdapter;
     IdeasAdapter ideasAdapter;
     ProductAdapter productsAdapter;
-    RecyclerView submissions, ideas, products;
+    EventAdapter eventAdapter;
+    RecyclerView submissions, ideas, products,events;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -49,17 +51,19 @@ public class DashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        name=view.findViewById(R.id.name_dashboard);
-        handleText=view.findViewById(R.id.handle_dashboard);
+        name = view.findViewById(R.id.name_dashboard);
+        handleText = view.findViewById(R.id.handle_dashboard);
         specialisation = view.findViewById(R.id.specialisation_dashboard);
         location = view.findViewById(R.id.location_dashboard);
         submissions_text = view.findViewById(R.id.submissions_dashboard_textview);
         ideas_text = view.findViewById(R.id.ideas_dashboard_textview);
         products_text = view.findViewById(R.id.products_dashboard_textview);
+        events_text = view.findViewById(R.id.events_dashboard_textview);
         submissions = view.findViewById(R.id.submissions_dashboard_recyclerview);
+        events=view.findViewById(R.id.events_dashboard_recyclerview);
         ideas = view.findViewById(R.id.ideas_dashboard_recyclerview);
         products = view.findViewById(R.id.products_dashboard_recyclerview);
-        image=view.findViewById(R.id.user_image_dashboard);
+        image = view.findViewById(R.id.user_image_dashboard);
         web = view.findViewById(R.id.web_button);
         fb = view.findViewById(R.id.fb_button);
         mail = view.findViewById(R.id.mail_button);
@@ -94,7 +98,10 @@ public class DashboardFragment extends Fragment {
         specialisation.setText(userData.specialisation);
         location.setText(userData.location);
         name.setText(userData.name);
-        handleText.setText("@"+handle);
+        handleText.setText("@" + handle);
+        eventAdapter=new EventAdapter();
+        events.setAdapter(eventAdapter);
+        events.setLayoutManager(new LinearLayoutManager(getActivity()));
         Glide
                 .with(getActivity())
                 .load(userData.img_url)
@@ -103,6 +110,9 @@ public class DashboardFragment extends Fragment {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(image);
 
+        if (userData.inst_code != null) {
+            loadEventCodes(userData.inst_code);
+        }
         if (userData.submissions.size() > 0) {
             submissions_text.setVisibility(View.VISIBLE);
             submissions.setVisibility(View.VISIBLE);
@@ -136,13 +146,51 @@ public class DashboardFragment extends Fragment {
         }
     }
 
+    private void loadEventCodes(String inst_code) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ecells").child(inst_code);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot childSnapshot : dataSnapshot.child("events").getChildren()) {
+                    loadEvents(((String)childSnapshot.getValue()).trim());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void loadEvents(String eventKey) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                EventsData eventsData = dataSnapshot.getValue(EventsData.class);
+                if (eventsData != null && !userEvents.contains(eventsData)) {
+                    userEvents.add(eventsData);
+                    events.setVisibility(View.VISIBLE);
+                    events_text.setVisibility(View.VISIBLE);
+                    eventAdapter.notifyItemInserted(userEvents.size() - 1);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void loadProduct(String next) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("products").child(next);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ProductData productData=dataSnapshot.getValue(ProductData.class);
-                if (productData!=null&&!userProducts.contains(productData)) {
+                ProductData productData = dataSnapshot.getValue(ProductData.class);
+                if (productData != null && !userProducts.contains(productData)) {
                     userProducts.add(productData);
                     productsAdapter.notifyItemInserted(userProducts.size() - 1);
                 }
@@ -160,8 +208,8 @@ public class DashboardFragment extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                SubmissionData submissionData=dataSnapshot.getValue(SubmissionData.class);
-                if (submissionData!=null&&!userSubmissions.contains(submissionData)) {
+                SubmissionData submissionData = dataSnapshot.getValue(SubmissionData.class);
+                if (submissionData != null && !userSubmissions.contains(submissionData)) {
                     userSubmissions.add(submissionData);
                     submissionsAdapter.notifyItemInserted(userProducts.size() - 1);
                 }
@@ -179,8 +227,12 @@ public class DashboardFragment extends Fragment {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                IdeaData ideaData=dataSnapshot.getValue(IdeaData.class);
-                if (ideaData!=null&&!userIdeas.contains(ideaData)) {
+                IdeaData ideaData = dataSnapshot.getValue(IdeaData.class);
+                if (ideaData != null && !userIdeas.contains(ideaData)) {
+                    if(userIdeas.size()==0) {
+                        ideas_text.setVisibility(View.VISIBLE);
+                        ideas.setVisibility(View.GONE);
+                    }
                     userIdeas.add(ideaData);
                     ideasAdapter.notifyItemInserted(userIdeas.size() - 1);
                 }
@@ -194,6 +246,48 @@ public class DashboardFragment extends Fragment {
 
     }
 
+    public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> {
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.events_element_view, parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            EventsData eventsData = userEvents.get(position);
+            holder.name.setText("Event name: "+eventsData.title);
+            holder.venue.setText("Venue: "+ eventsData.venue);
+            holder.time.setText("Time: "+eventsData.time);
+            holder.organiser.setText("Organiser: "+eventsData.institute_name);
+            Glide.with(getActivity())
+                    .load(eventsData.image)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(holder.imageView);
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return userEvents.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            ImageView imageView;
+            TextView name, venue, time, organiser;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                name = itemView.findViewById(R.id.event_name);
+                venue = itemView.findViewById(R.id.event_venue);
+                time = itemView.findViewById(R.id.event_time);
+                organiser = itemView.findViewById(R.id.event_organiser);
+                imageView = itemView.findViewById(R.id.event_imageview);
+            }
+        }
+    }
+
     public class IdeasAdapter extends RecyclerView.Adapter<IdeasAdapter.ViewHolder> {
 
 
@@ -202,7 +296,7 @@ public class DashboardFragment extends Fragment {
 
         @Override
         public IdeasAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.idea_dashboard,parent,false));
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.idea_dashboard, parent, false));
         }
 
         @Override
@@ -217,12 +311,14 @@ public class DashboardFragment extends Fragment {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             TextView title;
+
             public ViewHolder(View itemView) {
                 super(itemView);
-                title=itemView.findViewById(R.id.idea_title);
+                title = itemView.findViewById(R.id.idea_title);
             }
         }
     }
+
     public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
 
@@ -231,7 +327,7 @@ public class DashboardFragment extends Fragment {
 
         @Override
         public ProductAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.product_dashboard,parent,false));
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.product_dashboard, parent, false));
         }
 
         @Override
@@ -246,12 +342,14 @@ public class DashboardFragment extends Fragment {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             TextView title;
+
             public ViewHolder(View itemView) {
                 super(itemView);
-                title=itemView.findViewById(R.id.product_title);
+                title = itemView.findViewById(R.id.product_title);
             }
         }
     }
+
     public class SubmissionAdapter extends RecyclerView.Adapter<SubmissionAdapter.ViewHolder> {
 
 
@@ -272,11 +370,12 @@ public class DashboardFragment extends Fragment {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            TextView title,status;
+            TextView title, status;
+
             public ViewHolder(View itemView) {
                 super(itemView);
-                title=itemView.findViewById(R.id.submission_title);
-                status=itemView.findViewById(R.id.submission_status);
+                title = itemView.findViewById(R.id.submission_title);
+                status = itemView.findViewById(R.id.submission_status);
             }
         }
     }

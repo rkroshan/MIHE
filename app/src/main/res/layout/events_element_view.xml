@@ -37,6 +37,14 @@
             android:text="TIME : 29 JAN 2018, 5:30 pm Onwards"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/event_organiser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ORGANISER : NIT PATNA"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="#000" />
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"

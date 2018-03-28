@@ -5,9 +5,13 @@ package cubes.logic.mihe;
  */
 
 public class EventsData {
-    String title,details,image,link,time,venue,ecellcode;
+    String title, details, image, link, time, venue, ecellcode, institute_name;
 
-    public EventsData(String title, String details, String image, String link, String time, String venue, String ecellcode) {
+    public EventsData() {
+
+    }
+
+    public EventsData(String title, String details, String image, String link, String time, String venue, String ecellcode,String institute_name) {
         this.title = title;
         this.details = details;
         this.image = image;
@@ -15,6 +19,15 @@ public class EventsData {
         this.time = time;
         this.venue = venue;
         this.ecellcode = ecellcode;
+        this.institute_name=institute_name;
+    }
+
+    public String getInstitute_name() {
+        return institute_name;
+    }
+
+    public void setInstitute_name(String institute_name) {
+        this.institute_name = institute_name;
     }
 
     public String getTitle() {
