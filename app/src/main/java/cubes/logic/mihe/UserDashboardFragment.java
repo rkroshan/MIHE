@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class DashboardFragment extends Fragment {
+public class UserDashboardFragment extends Fragment {
 
     ArrayList<IdeaData> userIdeas = new ArrayList<>();
     ArrayList<ProductData> userProducts = new ArrayList<>();
@@ -31,7 +31,7 @@ public class DashboardFragment extends Fragment {
     ArrayList<EventsData> userEvents = new ArrayList<>();
 
     TextView name, handleText, specialisation, location, submissions_text, ideas_text, products_text,events_text;
-    ImageView image, web, fb, mail, linkedIn, twitter, gplus, github, more;
+    ImageView image, web, mail, linkedIn, github;
 
     String handle = "-L8S3DxEUZsQ_pVodMer";
     SubmissionAdapter submissionsAdapter;
@@ -40,7 +40,7 @@ public class DashboardFragment extends Fragment {
     EventAdapter eventAdapter;
     RecyclerView submissions, ideas, products,events;
 
-    public DashboardFragment() {
+    public UserDashboardFragment() {
         // Required empty public constructor
     }
 
@@ -65,13 +65,9 @@ public class DashboardFragment extends Fragment {
         products = view.findViewById(R.id.products_dashboard_recyclerview);
         image = view.findViewById(R.id.user_image_dashboard);
         web = view.findViewById(R.id.web_button);
-        fb = view.findViewById(R.id.fb_button);
         mail = view.findViewById(R.id.mail_button);
         linkedIn = view.findViewById(R.id.linked_button);
-        twitter = view.findViewById(R.id.twitter_button);
-        gplus = view.findViewById(R.id.gplus_button);
         github = view.findViewById(R.id.github_button);
-        more = view.findViewById(R.id.more_button);
         return view;
     }
 
