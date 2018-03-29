@@ -149,6 +149,7 @@ public class Feed extends Fragment {
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(viewHolder.event_imageview);
                 viewHolder.event_name.setText(model.getNAME());
+                viewHolder.setLink(model.getLINK(),getContext());
                 /*viewHolder.event_details.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

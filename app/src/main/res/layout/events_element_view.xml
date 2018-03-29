@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-
-        >
+        android:background="@drawable/rounded_rectangle"
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/event_imageview"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="@drawable/rounded_rectangle"
+            android:layout_height="240dp"
+            android:adjustViewBounds="true"
             android:layout_margin="8dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
         <TextView
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TIME : 29 JAN 2018, 5:30 pm Onwards"
-            android:textAppearance="?android:textAppearanceMedium"
+            android:textAppearance="?android:textAppearanceSmall"
             android:textColor="#000" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ORGANISER : NIT PATNA"
-            android:textAppearance="?android:textAppearanceMedium"
+            android:textAppearance="?android:textAppearanceSmall"
             android:textColor="#000" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,13 +60,16 @@
                 android:id="@+id/event_bookmark"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:layout_height="wrap_content"
+                android:textStyle="italic"
                 android:text="BOOKMARK"/>
             <TextView
                 android:id="@+id/event_details"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-
+                android:gravity="center"
+                android:textStyle="italic"
                 android:layout_height="wrap_content"
                 android:text="VIEW DETAILS"/>
         </LinearLayout>

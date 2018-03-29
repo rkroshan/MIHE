@@ -65,7 +65,7 @@ public class ideas_post extends AppCompatActivity {
                      name = idea_name.getText().toString();
                 }catch (Exception e){name = "";}
                 String desc = idea_description.getText().toString();
-                if(!(name.isEmpty())&&!(desc.isEmpty())){
+                if(!(desc.isEmpty())){
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(StringVariables.IDEAS).child(idea_type).push();
                     databaseReference.child(StringVariables.IDEA_NAME).setValue(name);
                     databaseReference.child(StringVariables.IDEA_DESCRIPTION).setValue(desc).addOnSuccessListener(new OnSuccessListener<Void>() {

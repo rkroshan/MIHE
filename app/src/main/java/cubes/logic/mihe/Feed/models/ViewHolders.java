@@ -21,6 +21,8 @@ public class ViewHolders {
     public static class EVENTViewHolder extends RecyclerView.ViewHolder {
         public ImageView event_imageview;
         public TextView event_name, event_time, event_bookmark, event_details;
+        private String URL;
+        private Context mcontext;
 
         public EVENTViewHolder(View itemView) {
             super(itemView);
@@ -29,10 +31,24 @@ public class ViewHolders {
             event_time = itemView.findViewById(R.id.event_time);
             event_bookmark = itemView.findViewById(R.id.event_bookmark);
             event_details = itemView.findViewById(R.id.event_details);
+
+            event_details.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    if(URL!=null) {
+                        try {
+                            intent.setData(Uri.parse(URL));
+                            mcontext.startActivity(intent);
+                        }catch (Exception e){}
+                    }
+                }
+            });
         }
 
-        public void setLink(){
-
+        public void setLink(String url, Context context){
+            URL = url;
+            mcontext = context;
         }
     }
 
