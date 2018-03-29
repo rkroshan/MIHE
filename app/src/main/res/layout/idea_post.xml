@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:textAppearanceMedium"
-            android:text="SPONSERED IDEA"/>
+            android:text="COMPETITIVE IDEA"/>
 
     </LinearLayout>
 
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="IDEA NAME"
+        android:hint="IDEA TITLE"
         android:textAppearance="?android:textAppearanceMedium" />
 
     <EditText

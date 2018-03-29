@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="8dp"
+    android:layout_gravity="center_horizontal"
     android:layout_width="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_rectangle"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/scheme_image"
             android:layout_width="match_parent"
-            android:layout_height="420dp"
+            android:layout_height="240dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
@@ -29,12 +32,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/scheme_image"
-        android:background="#44000000"
+        android:background="@drawable/rounded_rectangle_button"
         android:textColor="#fff"
         android:textAppearance="?android:textAppearanceMedium"
         android:text="View Details"/>
 
     </RelativeLayout>
-    </LinearLayout>
 
 </android.support.v7.widget.CardView>

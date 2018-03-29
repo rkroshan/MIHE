@@ -35,7 +35,7 @@ public class ideas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.ideas_frag, container, false);
         publicidea_dataref = FirebaseDatabase.getInstance().getReference().child(StringVariables.IDEAS).child(StringVariables.PUBLIC_IDEAS);
-        sponseredidea_dataref = FirebaseDatabase.getInstance().getReference().child(StringVariables.IDEAS).child(StringVariables.SPONSERED_IDEAS);
+        sponseredidea_dataref = FirebaseDatabase.getInstance().getReference().child(StringVariables.IDEAS).child(StringVariables.COMPETITIVE_IDEAS);
         init(view);
         return view;
     }
@@ -69,7 +69,9 @@ public class ideas extends Fragment {
                 ) {
             @Override
             protected void populateViewHolder(PublicIdeaViewholder viewHolder, ideaObject model, int position) {
-                viewHolder.setIdea_name(model.getIDEA_NAME());
+                try {
+                    viewHolder.setIdea_name(model.getIDEA_NAME());
+                }catch (Exception e){}
                 viewHolder.setIdea_description(model.getIDEA_DESCRIPTION());
             }
         };
@@ -93,6 +95,7 @@ public class ideas extends Fragment {
         public PublicIdeaViewholder(View itemView) {
             super(itemView);
             idea_name = itemView.findViewById(R.id.idea_name);
+            idea_name.setVisibility(View.GONE);
             idea_description = itemView.findViewById(R.id.idea_description);
         }
 

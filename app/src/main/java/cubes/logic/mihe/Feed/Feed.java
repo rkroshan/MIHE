@@ -126,10 +126,11 @@ public class Feed extends Fragment {
                         .placeholder(R.mipmap.ic_launcher)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(viewHolder.product_imageview);
-                viewHolder.product_category.setText(model.getCATEGORY());
+                viewHolder.setCategory(model.getCATEGORY(),getContext());
                 viewHolder.product_description.setText(model.getDESCRIPTION());
                 viewHolder.product_name.setText(model.getNAME());
                 viewHolder.product_makers.setText(model.getMAKERS());
+                viewHolder.setLink(model.getLINK(),getContext());
             }
         };
 
