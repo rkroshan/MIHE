@@ -1,7 +1,6 @@
 package cubes.logic.mihe.Assistant;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,7 @@ import cubes.logic.mihe.R;
  * Created by CREATOR on 3/28/2018.
  */
 
-class AssistantChatAdapter extends RecyclerView.Adapter<AssistantChatAdapter.ViewHolder> {
+class AssistantChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private HashMap<Integer, ChatModel> map = new HashMap<>();
@@ -31,158 +30,158 @@ class AssistantChatAdapter extends RecyclerView.Adapter<AssistantChatAdapter.Vie
     AssistantChatFragment chatFragment;
 
     public AssistantChatAdapter(ArrayList<ChatModel> history, Context context, AssistantChatFragment chat) {
-        map= ChatModel.CreateData.map;
+        map = ChatModel.CreateData.map;
         this.history = history;
-        this.context= context;
-        this.chatFragment =chat;
+        this.context = context;
+        this.chatFragment = chat;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.asssistant_chat_cardview, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holdertemp, final int position) {
         final ChatModel chatModel = history.get(position);
 
-        holder.reload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chatFragment.removeAfter(chatModel);
-            }
-        });
-        if(position!=history.size()-1) {
-            holder.container.setBackgroundResource(R.drawable.chat_background_unfocused);
-            holder.reload.setVisibility(View.VISIBLE);
-        }
-        else {
-            holder.container.setBackgroundResource(R.drawable.chat_background_focused);
-            holder.reload.setVisibility(View.GONE);
-        }
+        if (holdertemp instanceof ViewHolder) {
 
+            final ViewHolder holder = (ViewHolder) holdertemp;
 
-        if(chatModel.getIMAGEDATA()!=null) {
-            holder.imageView.setVisibility(View.VISIBLE);
-            Glide.with(context)
-                    .load(chatModel.getIMAGEDATA())
-                    .into(holder.imageView);
-        }
-        else
-            holder.imageView.setVisibility(View.GONE);
-        holder.chat.setText(chatModel.getQUESTION());
-        if(chatModel.getOPTION_YES()==null) {
-            holder.main.setVisibility(View.GONE);
-        }
-        else {
-            holder.main.setVisibility(View.VISIBLE);
-            holder.yes.setVisibility(View.VISIBLE);
-            holder.yes.setBackgroundResource(R.drawable.white_button);
-            holder.no.setBackgroundResource(R.drawable.white_button);;
-            holder.yes.setText(chatModel.getOPTION_YES());
-            if(position==history.size()-1) {
-                holder.yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(position!=history.size()-1)
-                            return;
-                        int pos = chatModel.getId() * 2;
-                        ChatModel chatModel1 = map.get(pos);
-                        holder.yes.setBackgroundResource(R.drawable.green_button);
-                        chatFragment.addToHistory(chatModel1);
-                    }
-                });
-            }
-            if(position!=history.size()-1) {
-                if(history.get(position+1).getId()==2*chatModel.getId()) {
-                    holder.yes.setBackgroundResource(R.drawable.green_button);
-                    holder.no.setBackgroundResource(R.drawable.white_button);;
-                }
-                if(history.get(position+1).getId()==2*chatModel.getId()+1) {
-                    holder.no.setBackgroundResource(R.drawable.green_button);
-                    holder.yes.setBackgroundResource(R.drawable.white_button);
-                }
-            }
-        }
-        if(chatModel.getOPTION_NO()==null) {
-            holder.no.setVisibility(View.GONE);
-        }
-        else {
-            holder.no.setText(chatModel.getOPTION_NO());
-            holder.no.setVisibility(View.VISIBLE);
-            if (position == history.size() - 1) {
-                holder.reload.setVisibility(View.GONE);
-                holder.no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(position!=history.size()-1)
-                            return;
-                        int pos = chatModel.getId() * 2 + 1;
-                        ChatModel chatModel1 = map.get(pos);
-                        holder.no.setBackgroundResource(R.drawable.green_button);
-                        chatFragment.addToHistory(chatModel1);
-                    }
-                });
-            }
-        }
-
-        if(chatModel.getOPTION1()==null) {
-            holder.extra.setVisibility(View.GONE);
-        }
-        else {
-            holder.extra.setVisibility(View.VISIBLE);
-            holder.b1.setText(chatModel.getOPTION1());
-            holder.b1.setVisibility(View.VISIBLE);
-            holder.b1.setText(chatModel.getOPTION1());
-            holder.b1.setOnClickListener(new View.OnClickListener() {
+            holder.reload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    chatFragment.loadStuff(chatModel.getOPTION1());
+                    chatFragment.removeAfter(chatModel);
                 }
             });
-
-            if(chatModel.getOPTION2()!=null) {
-                holder.b2.setText(chatModel.getOPTION2());
-                holder.b2.setVisibility(View.VISIBLE);
-                holder.b2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        chatFragment.loadStuff(chatModel.getOPTION2());
-                    }
-                });
-            }
-            else {
-                holder.b2.setVisibility(View.GONE);
+            if (position != history.size() - 1) {
+                holder.container.setBackgroundResource(R.drawable.chat_background_unfocused);
+                holder.reload.setVisibility(View.VISIBLE);
+            } else {
+                holder.container.setBackgroundResource(R.drawable.chat_background_focused);
+                holder.reload.setVisibility(View.GONE);
             }
 
-            if(chatModel.getOPTION3()!=null) {
-                holder.b3.setText(chatModel.getOPTION3());
-                holder.b3.setVisibility(View.VISIBLE);
-                holder.b3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        chatFragment.loadStuff(chatModel.getOPTION3());
+
+            if (chatModel.getIMAGEDATA() != null) {
+                holder.imageView.setVisibility(View.VISIBLE);
+                Glide.with(context)
+                        .load(chatModel.getIMAGEDATA())
+                        .into(holder.imageView);
+            } else
+                holder.imageView.setVisibility(View.GONE);
+            holder.chat.setText(chatModel.getQUESTION());
+            if (chatModel.getOPTION_YES() == null) {
+                holder.main.setVisibility(View.GONE);
+            } else {
+                holder.main.setVisibility(View.VISIBLE);
+                holder.yes.setVisibility(View.VISIBLE);
+                holder.yes.setBackgroundResource(R.drawable.white_button);
+                holder.no.setBackgroundResource(R.drawable.white_button);
+                ;
+                holder.yes.setText(chatModel.getOPTION_YES());
+                if (position == history.size() - 1) {
+                    holder.yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (position != history.size() - 1)
+                                return;
+                            int pos = chatModel.getId() * 2;
+                            ChatModel chatModel1 = map.get(pos);
+                            holder.yes.setBackgroundResource(R.drawable.green_button);
+                            chatFragment.addToHistory(chatModel1);
+                        }
+                    });
+                }
+                if (position != history.size() - 1) {
+                    if (history.get(position + 1).getId() == 2 * chatModel.getId()) {
+                        holder.yes.setBackgroundResource(R.drawable.green_button);
+                        holder.no.setBackgroundResource(R.drawable.white_button);
+                        ;
                     }
-                });
+                    if (history.get(position + 1).getId() == 2 * chatModel.getId() + 1) {
+                        holder.no.setBackgroundResource(R.drawable.green_button);
+                        holder.yes.setBackgroundResource(R.drawable.white_button);
+                    }
+                }
             }
-            else {
-                holder.b3.setVisibility(View.GONE);
+            if (chatModel.getOPTION_NO() == null) {
+                holder.no.setVisibility(View.GONE);
+            } else {
+                holder.no.setText(chatModel.getOPTION_NO());
+                holder.no.setVisibility(View.VISIBLE);
+                if (position == history.size() - 1) {
+                    holder.reload.setVisibility(View.GONE);
+                    holder.no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (position != history.size() - 1)
+                                return;
+                            int pos = chatModel.getId() * 2 + 1;
+                            ChatModel chatModel1 = map.get(pos);
+                            holder.no.setBackgroundResource(R.drawable.green_button);
+                            chatFragment.addToHistory(chatModel1);
+                        }
+                    });
+                }
             }
 
-            if(chatModel.getOPTION4()!=null) {
-                holder.b4.setText(chatModel.getOPTION4());
-                holder.b4.setVisibility(View.VISIBLE);
-                holder.b4.setOnClickListener(new View.OnClickListener() {
+            if (chatModel.getOPTION1() == null) {
+                holder.extra.setVisibility(View.GONE);
+            } else {
+                holder.extra.setVisibility(View.VISIBLE);
+                holder.b1.setText(chatModel.getOPTION1());
+                holder.b1.setVisibility(View.VISIBLE);
+                holder.b1.setText(chatModel.getOPTION1());
+                holder.b1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        chatFragment.loadStuff(chatModel.getOPTION4());
+                        chatFragment.loadStuff(chatModel.getOPTION1());
                     }
                 });
+
+                if (chatModel.getOPTION2() != null) {
+                    holder.b2.setText(chatModel.getOPTION2());
+                    holder.b2.setVisibility(View.VISIBLE);
+                    holder.b2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            chatFragment.loadStuff(chatModel.getOPTION2());
+                        }
+                    });
+                } else {
+                    holder.b2.setVisibility(View.GONE);
+                }
+
+                if (chatModel.getOPTION3() != null) {
+                    holder.b3.setText(chatModel.getOPTION3());
+                    holder.b3.setVisibility(View.VISIBLE);
+                    holder.b3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            chatFragment.loadStuff(chatModel.getOPTION3());
+                        }
+                    });
+                } else {
+                    holder.b3.setVisibility(View.GONE);
+                }
+
+                if (chatModel.getOPTION4() != null) {
+                    holder.b4.setText(chatModel.getOPTION4());
+                    holder.b4.setVisibility(View.VISIBLE);
+                    holder.b4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            chatFragment.loadStuff(chatModel.getOPTION4());
+                        }
+                    });
+                } else
+                    holder.b4.setVisibility(View.GONE);
+                //other stuff
             }
-            else
-                holder.b4.setVisibility(View.GONE);
-            //other stuff
+
         }
     }
 
@@ -197,13 +196,13 @@ class AssistantChatAdapter extends RecyclerView.Adapter<AssistantChatAdapter.Vie
         ImageView reload;
         TextView chat;
         Button yes, no;
-        LinearLayout main,extra;
+        LinearLayout main, extra;
         Button b1, b2, b3, b4, b5;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            container= itemView;
+            container = itemView;
             reload = itemView.findViewById(R.id.chat_reload);
             imageView = itemView.findViewById(R.id.chat_imageview);
             chat = itemView.findViewById(R.id.chat_textview);
@@ -214,9 +213,16 @@ class AssistantChatAdapter extends RecyclerView.Adapter<AssistantChatAdapter.Vie
             b3 = itemView.findViewById(R.id.chat_extra_button3);
             b4 = itemView.findViewById(R.id.chat_extra_button4);
 //            b5 = itemView.findViewById(R.id.chat_extra_button5);
-            main= itemView.findViewById(R.id.chat_option_layout);
-            extra=itemView.findViewById(R.id.chat_extra_option_layout);
+            main = itemView.findViewById(R.id.chat_option_layout);
+            extra = itemView.findViewById(R.id.chat_extra_option_layout);
         }
 
+    }
+
+    public class BasicsHolder extends RecyclerView.ViewHolder {
+
+        public BasicsHolder(View itemView) {
+            super(itemView);
+        }
     }
 }

@@ -25,7 +25,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
         fragments.add(new Feed());
         fragments.add(new NetworkFragment());
         fragments.add(new AssistantChatFragment());
-        fragments.add(new DashboardFragment());
+        fragments.add(new UserDashboardFragment());
         fragments.add(new explore_base());
     }
 
