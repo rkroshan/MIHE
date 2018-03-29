@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:elevation="16dp"
+    android:layout_marginBottom="4dp"
     android:orientation="vertical">
 
 
     <ImageView
         android:id="@+id/resouces_imageview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="240dp"
+        android:adjustViewBounds="true"
         android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
@@ -21,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:padding="4dp"
             android:orientation="vertical">
 
             <TextView
@@ -46,7 +50,9 @@
             android:id="@+id/resouces_download"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:adjustViewBounds="true"
             android:layout_gravity="center"
+            android:padding="2dp"
             android:src="@drawable/ic_file_download_black_24dp" />
 
     </LinearLayout>

@@ -12,6 +12,13 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher" />
 
+    <ImageView
+        android:id="@+id/resouces_book"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher" />
+
 
     <EditText
         android:id="@+id/resouces_name"
@@ -31,19 +38,11 @@
         android:textAppearance="?android:textAppearanceSmall"
         android:textStyle="italic" />
 
-    <EditText
-        android:id="@+id/resouces_link"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="link"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textStyle="italic" />
-
     <Button
         android:id="@+id/resource_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="post" />
+
 
 </LinearLayout>

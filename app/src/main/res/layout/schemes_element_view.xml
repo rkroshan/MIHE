@@ -4,18 +4,25 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/scheme_image"
-        android:src="@mipmap/ic_launcher"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:layout_width="match_parent"
-        android:layout_height="420dp"/>
+        <ImageView
+            android:id="@+id/scheme_image"
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher" />
 
     <Button
         android:id="@+id/scheme_viewdetails"
@@ -28,5 +35,6 @@
         android:text="View Details"/>
 
     </RelativeLayout>
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

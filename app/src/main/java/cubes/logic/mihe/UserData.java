@@ -195,81 +195,88 @@ public class UserData implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof UserData)) return false;
 
         UserData userData = (UserData) o;
 
-        if (skills != null ? !skills.equals(userData.skills) : userData.skills != null)
+        if (getSkills() != null ? !getSkills().equals(userData.getSkills()) : userData.getSkills() != null)
             return false;
-        if (ideas != null ? !ideas.equals(userData.ideas) : userData.ideas != null) return false;
-        if (phone != null ? !phone.equals(userData.phone) : userData.phone != null) return false;
-        if (inst_code != null ? !inst_code.equals(userData.inst_code) : userData.inst_code != null)
+        if (getIdeas() != null ? !getIdeas().equals(userData.getIdeas()) : userData.getIdeas() != null)
             return false;
-        if (website != null ? !website.equals(userData.website) : userData.website != null)
+        if (getPhone() != null ? !getPhone().equals(userData.getPhone()) : userData.getPhone() != null)
             return false;
-        if (location != null ? !location.equals(userData.location) : userData.location != null)
+        if (getInst_code() != null ? !getInst_code().equals(userData.getInst_code()) : userData.getInst_code() != null)
             return false;
-        if (linkedin != null ? !linkedin.equals(userData.linkedin) : userData.linkedin != null)
+        if (getWebsite() != null ? !getWebsite().equals(userData.getWebsite()) : userData.getWebsite() != null)
             return false;
-        if (about != null ? !about.equals(userData.about) : userData.about != null) return false;
-        if (submissions != null ? !submissions.equals(userData.submissions) : userData.submissions != null)
+        if (getLocation() != null ? !getLocation().equals(userData.getLocation()) : userData.getLocation() != null)
             return false;
-        if (gplus != null ? !gplus.equals(userData.gplus) : userData.gplus != null) return false;
-        if (followed != null ? !followed.equals(userData.followed) : userData.followed != null)
+        if (getLinkedin() != null ? !getLinkedin().equals(userData.getLinkedin()) : userData.getLinkedin() != null)
             return false;
-        if (fb != null ? !fb.equals(userData.fb) : userData.fb != null) return false;
-        if (starred_ideas != null ? !starred_ideas.equals(userData.starred_ideas) : userData.starred_ideas != null)
+        if (getAbout() != null ? !getAbout().equals(userData.getAbout()) : userData.getAbout() != null)
             return false;
-        if (institution_name != null ? !institution_name.equals(userData.institution_name) : userData.institution_name != null)
+        if (getSubmissions() != null ? !getSubmissions().equals(userData.getSubmissions()) : userData.getSubmissions() != null)
             return false;
-        if (twitter != null ? !twitter.equals(userData.twitter) : userData.twitter != null)
+        if (getGplus() != null ? !getGplus().equals(userData.getGplus()) : userData.getGplus() != null)
             return false;
-        if (specialisation != null ? !specialisation.equals(userData.specialisation) : userData.specialisation != null)
+        if (getFollowed() != null ? !getFollowed().equals(userData.getFollowed()) : userData.getFollowed() != null)
             return false;
-        if (followers != null ? !followers.equals(userData.followers) : userData.followers != null)
+        if (getFb() != null ? !getFb().equals(userData.getFb()) : userData.getFb() != null)
             return false;
-        if (email != null ? !email.equals(userData.email) : userData.email != null) return false;
-        if (name != null ? !name.equals(userData.name) : userData.name != null) return false;
-        if (starred_products != null ? !starred_products.equals(userData.starred_products) : userData.starred_products != null)
+        if (getStarred_ideas() != null ? !getStarred_ideas().equals(userData.getStarred_ideas()) : userData.getStarred_ideas() != null)
             return false;
-        if (branch != null ? !branch.equals(userData.branch) : userData.branch != null)
+        if (getInstitution_name() != null ? !getInstitution_name().equals(userData.getInstitution_name()) : userData.getInstitution_name() != null)
             return false;
-        if (products != null ? !products.equals(userData.products) : userData.products != null)
+        if (getTwitter() != null ? !getTwitter().equals(userData.getTwitter()) : userData.getTwitter() != null)
             return false;
-        if (github != null ? !github.equals(userData.github) : userData.github != null)
+        if (getSpecialisation() != null ? !getSpecialisation().equals(userData.getSpecialisation()) : userData.getSpecialisation() != null)
             return false;
-        if (img_url != null ? !img_url.equals(userData.img_url) : userData.img_url != null)
+        if (getFollowers() != null ? !getFollowers().equals(userData.getFollowers()) : userData.getFollowers() != null)
             return false;
-        return handle != null ? handle.equals(userData.handle) : userData.handle == null;
+        if (getEmail() != null ? !getEmail().equals(userData.getEmail()) : userData.getEmail() != null)
+            return false;
+        if (getName() != null ? !getName().equals(userData.getName()) : userData.getName() != null)
+            return false;
+        if (getStarred_products() != null ? !getStarred_products().equals(userData.getStarred_products()) : userData.getStarred_products() != null)
+            return false;
+        if (getBranch() != null ? !getBranch().equals(userData.getBranch()) : userData.getBranch() != null)
+            return false;
+        if (getProducts() != null ? !getProducts().equals(userData.getProducts()) : userData.getProducts() != null)
+            return false;
+        if (getGithub() != null ? !getGithub().equals(userData.getGithub()) : userData.getGithub() != null)
+            return false;
+        if (getImg_url() != null ? !getImg_url().equals(userData.getImg_url()) : userData.getImg_url() != null)
+            return false;
+        return getHandle() != null ? getHandle().equals(userData.getHandle()) : userData.getHandle() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = skills != null ? skills.hashCode() : 0;
-        result = 31 * result + (ideas != null ? ideas.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (inst_code != null ? inst_code.hashCode() : 0);
-        result = 31 * result + (website != null ? website.hashCode() : 0);
-        result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + (linkedin != null ? linkedin.hashCode() : 0);
-        result = 31 * result + (about != null ? about.hashCode() : 0);
-        result = 31 * result + (submissions != null ? submissions.hashCode() : 0);
-        result = 31 * result + (gplus != null ? gplus.hashCode() : 0);
-        result = 31 * result + (followed != null ? followed.hashCode() : 0);
-        result = 31 * result + (fb != null ? fb.hashCode() : 0);
-        result = 31 * result + (starred_ideas != null ? starred_ideas.hashCode() : 0);
-        result = 31 * result + (institution_name != null ? institution_name.hashCode() : 0);
-        result = 31 * result + (twitter != null ? twitter.hashCode() : 0);
-        result = 31 * result + (specialisation != null ? specialisation.hashCode() : 0);
-        result = 31 * result + (followers != null ? followers.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (starred_products != null ? starred_products.hashCode() : 0);
-        result = 31 * result + (branch != null ? branch.hashCode() : 0);
-        result = 31 * result + (products != null ? products.hashCode() : 0);
-        result = 31 * result + (github != null ? github.hashCode() : 0);
-        result = 31 * result + (img_url != null ? img_url.hashCode() : 0);
-        result = 31 * result + (handle != null ? handle.hashCode() : 0);
+        int result = getSkills() != null ? getSkills().hashCode() : 0;
+        result = 31 * result + (getIdeas() != null ? getIdeas().hashCode() : 0);
+        result = 31 * result + (getPhone() != null ? getPhone().hashCode() : 0);
+        result = 31 * result + (getInst_code() != null ? getInst_code().hashCode() : 0);
+        result = 31 * result + (getWebsite() != null ? getWebsite().hashCode() : 0);
+        result = 31 * result + (getLocation() != null ? getLocation().hashCode() : 0);
+        result = 31 * result + (getLinkedin() != null ? getLinkedin().hashCode() : 0);
+        result = 31 * result + (getAbout() != null ? getAbout().hashCode() : 0);
+        result = 31 * result + (getSubmissions() != null ? getSubmissions().hashCode() : 0);
+        result = 31 * result + (getGplus() != null ? getGplus().hashCode() : 0);
+        result = 31 * result + (getFollowed() != null ? getFollowed().hashCode() : 0);
+        result = 31 * result + (getFb() != null ? getFb().hashCode() : 0);
+        result = 31 * result + (getStarred_ideas() != null ? getStarred_ideas().hashCode() : 0);
+        result = 31 * result + (getInstitution_name() != null ? getInstitution_name().hashCode() : 0);
+        result = 31 * result + (getTwitter() != null ? getTwitter().hashCode() : 0);
+        result = 31 * result + (getSpecialisation() != null ? getSpecialisation().hashCode() : 0);
+        result = 31 * result + (getFollowers() != null ? getFollowers().hashCode() : 0);
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getStarred_products() != null ? getStarred_products().hashCode() : 0);
+        result = 31 * result + (getBranch() != null ? getBranch().hashCode() : 0);
+        result = 31 * result + (getProducts() != null ? getProducts().hashCode() : 0);
+        result = 31 * result + (getGithub() != null ? getGithub().hashCode() : 0);
+        result = 31 * result + (getImg_url() != null ? getImg_url().hashCode() : 0);
+        result = 31 * result + (getHandle() != null ? getHandle().hashCode() : 0);
         return result;
     }
 

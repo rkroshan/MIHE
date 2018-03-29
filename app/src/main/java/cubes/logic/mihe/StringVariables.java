@@ -26,4 +26,5 @@ public class StringVariables {
     public static final String PUBLIC_IDEAS = "PUBLIC_IDEAS";
     public static final String SPONSERED_IDEAS ="SPONSERED_IDEAS" ;
     public static final String MAKERS = "MAKERS";
+    public static final String BOOK_URL ="BOOK_URL" ;
 }

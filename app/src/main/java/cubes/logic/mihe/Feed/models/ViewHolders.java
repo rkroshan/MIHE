@@ -51,8 +51,10 @@ public class ViewHolders {
                 public void onClick(View view) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     if(URL!=null) {
-                        intent.setData(Uri.parse(URL));
-                        mcontext.startActivity(intent);
+                        try {
+                            intent.setData(Uri.parse(URL));
+                            mcontext.startActivity(intent);
+                        }catch (Exception e){}
                     }
                 }
             });
@@ -94,8 +96,10 @@ public class ViewHolders {
                 public void onClick(View view) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     if(URL!=null) {
-                        intent.setData(Uri.parse(URL));
-                        mcontext.startActivity(intent);
+                        try {
+                            intent.setData(Uri.parse(URL));
+                            mcontext.startActivity(intent);
+                        }catch (Exception e){}
                     }
                 }
             });

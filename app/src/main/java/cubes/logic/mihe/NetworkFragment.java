@@ -1,10 +1,14 @@
 package cubes.logic.mihe;
 
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,10 +44,10 @@ public class NetworkFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view= inflater.inflate(R.layout.fragment_network, container, false);
+        userCardAdapter = new UserCardAdapter();
         recyclerView=view.findViewById(R.id.network_recyclerview);
-        recyclerView.setAdapter(new UserCardAdapter());
+        recyclerView.setAdapter(userCardAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        userCardAdapter=new UserCardAdapter();
         return view;
     }
 
@@ -78,12 +83,20 @@ public class NetworkFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, int position) {
             UserData userData=userDataArrayList.get(position);
             Glide.with(getActivity())
                     .load(userData.img_url)
-                    .placeholder(R.mipmap.ic_launcher)
-                    .into(holder.user);
+                    .asBitmap()
+                    .placeholder(R.mipmap.ic_launcher_round)
+                    .into(new BitmapImageViewTarget(holder.user){
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularDrawable = RoundedBitmapDrawableFactory.create(getContext().getResources(),resource);
+                            circularDrawable.setCircular(true);
+                            holder.user.setImageDrawable(circularDrawable);
+                        }
+                    });
             holder.name.setText(userData.name);
             holder.institute.setText(userData.institution_name);
             holder.specialisation.setText(userData.specialisation);
