@@ -5,7 +5,15 @@ package cubes.logic.mihe.Explore.Explore_Fragments.resouces;
  */
 
 public class ResourcesObject {
-    private String IMAGE,NAME,AUTHOR,DOWNLOAD_URL;
+    private String IMAGE,NAME,AUTHOR,BOOK_URL;
+
+    public String getBOOK_URL() {
+        return BOOK_URL;
+    }
+
+    public void setBOOK_URL(String BOOK_URL) {
+        this.BOOK_URL = BOOK_URL;
+    }
 
     public String getIMAGE() {
         return IMAGE;
@@ -29,13 +37,5 @@ public class ResourcesObject {
 
     public void setAUTHOR(String AUTHOR) {
         this.AUTHOR = AUTHOR;
-    }
-
-    public String getDOWNLOAD_URL() {
-        return DOWNLOAD_URL;
-    }
-
-    public void setDOWNLOAD_URL(String DOWNLOAD_URL) {
-        this.DOWNLOAD_URL = DOWNLOAD_URL;
     }
 }

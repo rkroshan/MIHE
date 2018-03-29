@@ -1,8 +1,11 @@
 package cubes.logic.mihe.Explore.Explore_Fragments.resouces;
 
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -53,10 +57,10 @@ public class Resources extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(ResourcesViewHolder viewHolder, ResourcesObject model, int position) {
-                viewHolder.setResouces_imageview(model.getIMAGE());
+                viewHolder.setResources_url(model.getIMAGE());
+                viewHolder.setResouces_imageview(model.getBOOK_URL());
                 viewHolder.setResouces_name(model.getNAME());
                 viewHolder.setResouces_author(model.getAUTHOR());
-                viewHolder.setResouces_download(model.getDOWNLOAD_URL());
             }
         };
 
@@ -67,6 +71,7 @@ public class Resources extends Fragment {
         ImageView resouces_imageview,resouces_download;
         TextView resouces_name,resouces_author;
         String Link=null;
+        String Resource_name = null;
         public ResourcesViewHolder(final View itemView) {
             super(itemView);
             resouces_imageview = itemView.findViewById(R.id.resouces_imageview);
@@ -79,19 +84,33 @@ public class Resources extends Fragment {
                 public void onClick(View view) {
                     if(Link!=null){
                        // Download starts
+                        Toast.makeText(itemView.getContext(),"Downloading File",Toast.LENGTH_SHORT).show();
+                        DownloadManager mManager = (DownloadManager) itemView.getContext().getSystemService(Context.DOWNLOAD_SERVICE);
+                        Uri uri = Uri.parse(Link);
+                        DownloadManager.Request mrequest = new DownloadManager.Request(uri);
+                        mrequest.setTitle(Resource_name);
+                        mrequest.setDescription("File Downloading...");
+                        mrequest.allowScanningByMediaScanner();
+                        mrequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                        mrequest.setDestinationInExternalFilesDir(itemView.getContext(), Environment.DIRECTORY_DOWNLOADS,Resource_name);
+                        mManager.enqueue(mrequest);
                     }
                 }
             });
         }
 
-        private void setResouces_download(String url){Link = url;}
         private void setResouces_imageview(String data){
             Glide.with(itemView.getContext()).load(data).placeholder(R.mipmap.ic_launcher)
                     .diskCacheStrategy(DiskCacheStrategy.ALL).into(resouces_imageview);
 
             Log.e("Image link",data);
         }
-        private void setResouces_name(String name){resouces_name.setText(name);}
+        private void setResources_url(String data){
+            Link = data;
+        }
+        private void setResouces_name(String name){
+            Resource_name = name;
+            resouces_name.setText(name);}
         private void setResouces_author(String name){resouces_author.setText(name);}
     }
 }
