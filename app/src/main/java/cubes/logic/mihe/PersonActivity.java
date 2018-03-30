@@ -217,7 +217,7 @@ public class PersonActivity extends AppCompatActivity {
                 ProductData productData = dataSnapshot.getValue(ProductData.class);
                 if (productData != null && !userProducts.contains(productData)) {
                     userProducts.add(productData);
-                    productsAdapter.notifyItemInserted(userProducts.size() - 1);
+                    productsAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -237,7 +237,7 @@ public class PersonActivity extends AppCompatActivity {
                 IdeaData ideaData = dataSnapshot.getValue(IdeaData.class);
                 if (ideaData != null && !userIdeas.contains(ideaData)) {
                     userIdeas.add(ideaData);
-                    ideasAdapter.notifyItemInserted(userIdeas.size() - 1);
+                    ideasAdapter.notifyDataSetChanged();
                 }
             }
 

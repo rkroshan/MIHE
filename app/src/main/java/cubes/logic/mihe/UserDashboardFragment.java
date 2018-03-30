@@ -1,7 +1,9 @@
 package cubes.logic.mihe;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -30,6 +32,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import cubes.logic.mihe.TemporaryActivities.events_post;
+import cubes.logic.mihe.TemporaryActivities.ideas_post;
+import cubes.logic.mihe.TemporaryActivities.product_post;
+
 public class UserDashboardFragment extends Fragment {
 
     ArrayList<IdeaData> userIdeas = new ArrayList<>();
@@ -38,7 +44,7 @@ public class UserDashboardFragment extends Fragment {
     ArrayList<EventsData> userEvents = new ArrayList<>();
 
     TextView name, handleText, specialisation, location, submissions_text, ideas_text, products_text, events_text;
-    ImageView image, web, mail, linkedIn, github;
+    ImageView image, web, mail, linkedIn, github,fb,add_event,add_product,add_idea,add_submission;
 
     String handle = "-L8S3DxEUZsQ_pVodMer";
     SubmissionAdapter submissionsAdapter;
@@ -50,6 +56,7 @@ public class UserDashboardFragment extends Fragment {
     SkillsAdapter skillsAdapter= new SkillsAdapter();
     ArrayList<String> skills;
 
+    int type;
 
     public UserDashboardFragment() {
         // Required empty public constructor
@@ -62,6 +69,8 @@ public class UserDashboardFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        type = sharedPreferences.getInt("type",StringVariables.user);
         name = view.findViewById(R.id.name_dashboard);
         handleText = view.findViewById(R.id.handle_dashboard);
         specialisation = view.findViewById(R.id.specialisation_dashboard);
@@ -75,10 +84,47 @@ public class UserDashboardFragment extends Fragment {
         ideas = view.findViewById(R.id.ideas_dashboard_recyclerview);
         products = view.findViewById(R.id.products_dashboard_recyclerview);
         image = view.findViewById(R.id.user_image_dashboard);
-        web = view.findViewById(R.id.web_button);
-        mail = view.findViewById(R.id.mail_button);
-        linkedIn = view.findViewById(R.id.linked_button);
-        github = view.findViewById(R.id.github_button);
+        web = view.findViewById(R.id.web);
+        mail = view.findViewById(R.id.mail);
+        linkedIn = view.findViewById(R.id.linked);
+        github = view.findViewById(R.id.github);
+        add_event=view.findViewById(R.id.add_event);
+        add_submission=view.findViewById(R.id.add_submission);
+        add_product=view.findViewById(R.id.add_product);
+        add_idea=view.findViewById(R.id.add_idea);
+        add_idea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(),ideas_post.class));
+            }
+        });
+        add_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(),product_post.class));
+            }
+        });
+        add_event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(),events_post.class));
+            }
+        });
+        add_submission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), ContestActivity.class));
+            }
+        });
+        if(type==StringVariables.ecell) {
+            ideas.setVisibility(View.GONE);
+            products.setVisibility(View.GONE);
+            submissions_text.setText("Submissions to approve");
+
+        }
+        if(type == StringVariables.user) {
+            add_event.setVisibility(View.GONE);
+        }
         skillsView=view.findViewById(R.id.skills_recyclerview);
         skillsView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
         skillsView.setAdapter(skillsAdapter);
@@ -163,6 +209,8 @@ public class UserDashboardFragment extends Fragment {
             linkedIn.setVisibility(View.GONE);
         if(userData.getGithub()==null)
             github.setVisibility(View.GONE);
+        if(userData.getFb()==null)
+
         web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,7 +311,7 @@ public class UserDashboardFragment extends Fragment {
                     userEvents.add(eventsData);
                     events.setVisibility(View.VISIBLE);
                     events_text.setVisibility(View.VISIBLE);
-                    eventAdapter.notifyItemInserted(userEvents.size() - 1);
+                    eventAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -282,7 +330,7 @@ public class UserDashboardFragment extends Fragment {
                 ProductData productData = dataSnapshot.getValue(ProductData.class);
                 if (productData != null && !userProducts.contains(productData)) {
                     userProducts.add(productData);
-                    productsAdapter.notifyItemInserted(userProducts.size() - 1);
+                    productsAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -299,10 +347,13 @@ public class UserDashboardFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 SubmissionData submissionData = dataSnapshot.getValue(SubmissionData.class);
-                if (submissionData != null && !userSubmissions.contains(submissionData)) {
+                if(userSubmissions!=null&&userSubmissions.size()>=1&&userSubmissions.get(0).title.equals(submissionData.title))
+                    userSubmissions.set(0,submissionData);
+                else if (submissionData != null && !userSubmissions.contains(submissionData)) {
                     userSubmissions.add(submissionData);
-                    submissionsAdapter.notifyItemInserted(userProducts.size() - 1);
                 }
+
+                submissionsAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -320,7 +371,7 @@ public class UserDashboardFragment extends Fragment {
                 IdeaData ideaData = dataSnapshot.getValue(IdeaData.class);
                 if (ideaData != null && !userIdeas.contains(ideaData)) {
                     userIdeas.add(ideaData);
-                    ideasAdapter.notifyItemInserted(userIdeas.size() - 1);
+                    ideasAdapter.notifyDataSetChanged();
                 }
             }
 
@@ -447,9 +498,9 @@ public class UserDashboardFragment extends Fragment {
         @Override
         public void onBindViewHolder(SubmissionAdapter.ViewHolder holder, int position) {
             holder.title.setText("• "+userSubmissions.get(position).title);
-            String temp = userSubmissions.get(position).getStatus().trim().equals("-1")?"Rejected : ":userSubmissions.get(position).getStatus().trim().equals(1)?"Approved : ":"Pending : ";
+            String temp = userSubmissions.get(position).getStatus().trim().equals("-1")?"Rejected : ":userSubmissions.get(position).getStatus().trim().equals("1")?"Approved : ":"Pending : ";
             holder.status.setText(temp+userSubmissions.get(position).review);
-            holder.status.setTextColor(userSubmissions.get(position).getStatus().trim().equals("0")?Color.rgb(6,0,1):userSubmissions.get(position).getStatus().trim().equals("-1")? Color.rgb(240,0,0):Color.rgb(0,181,0));
+            holder.status.setTextColor(userSubmissions.get(position).getStatus().trim().equals("-1")?Color.rgb(240,0,0):userSubmissions.get(position).getStatus().trim().equals("1")?Color.rgb(0,181,0):Color.rgb(0,0,0));
         }
 
         @Override
