@@ -49,7 +49,7 @@
             android:id="@+id/product_link"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="by Arpit luyia"
+            android:hint="link"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="#000" />
 
