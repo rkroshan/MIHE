@@ -46,6 +46,10 @@ public class UserDashboardFragment extends Fragment {
     ProductAdapter productsAdapter;
     EventAdapter eventAdapter;
     RecyclerView submissions, ideas, products, events;
+    RecyclerView skillsView;
+    SkillsAdapter skillsAdapter= new SkillsAdapter();
+    ArrayList<String> skills;
+
 
     public UserDashboardFragment() {
         // Required empty public constructor
@@ -75,7 +79,35 @@ public class UserDashboardFragment extends Fragment {
         mail = view.findViewById(R.id.mail_button);
         linkedIn = view.findViewById(R.id.linked_button);
         github = view.findViewById(R.id.github_button);
+        skillsView=view.findViewById(R.id.skills_recyclerview);
+        skillsView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
+        skillsView.setAdapter(skillsAdapter);
         return view;
+    }
+    public class SkillsAdapter extends RecyclerView.Adapter<SkillsAdapter.ViewHolder> {
+
+        @Override
+        public SkillsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new SkillsAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.skillview,parent,false));
+        }
+
+        @Override
+        public void onBindViewHolder(SkillsAdapter.ViewHolder holder, int position) {
+            holder.textView.setText(skills.get(position));
+        }
+
+        @Override
+        public int getItemCount() {
+            return skills==null?0:skills.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            TextView textView;
+            public ViewHolder(View itemView) {
+                super(itemView);
+                textView=itemView.findViewById(R.id.skill_textview);
+            }
+        }
     }
 
     @Override
@@ -98,6 +130,8 @@ public class UserDashboardFragment extends Fragment {
     }
 
     private void updateData(final UserData userData) {
+        skills = userData.skills;
+        skillsAdapter.notifyDataSetChanged();
         specialisation.setText(userData.specialisation);
         location.setText(userData.location);
         name.setText(userData.name);
@@ -179,7 +213,7 @@ public class UserDashboardFragment extends Fragment {
             while (stringIterator.hasNext())
                 loadSubmission(stringIterator.next());
         }
-        if (userData.ideas.size() > 0) {
+        if (userData.ideas!=null&&userData.ideas.size() > 0) {
             ideas_text.setVisibility(View.VISIBLE);
             ideas.setVisibility(View.VISIBLE);
             ideasAdapter = new IdeasAdapter();
@@ -190,7 +224,7 @@ public class UserDashboardFragment extends Fragment {
             while (stringIterator.hasNext())
                 loadIdea(stringIterator.next());
         }
-        if (userData.products.size() > 0) {
+        if (userData.products!=null&&userData.products.size() > 0) {
             products_text.setVisibility(View.VISIBLE);
             products.setVisibility(View.VISIBLE);
             productsAdapter = new ProductAdapter();

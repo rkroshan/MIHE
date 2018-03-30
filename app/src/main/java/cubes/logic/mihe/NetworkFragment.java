@@ -82,6 +82,7 @@ public class NetworkFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot childSnapshot: dataSnapshot.child("users").getChildren()) {
                     UserData tempUser=childSnapshot.getValue(UserData.class);
+                    tempUser.handle = childSnapshot.getKey();
 
                     if(tempUser!=null&&!userDataArrayList.contains(tempUser))
                         userDataArrayList.add(tempUser);

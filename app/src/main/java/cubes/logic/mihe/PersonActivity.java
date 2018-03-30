@@ -32,6 +32,10 @@ import static android.view.View.VISIBLE;
 
 public class PersonActivity extends AppCompatActivity {
 
+    RecyclerView skillsView;
+    ArrayList<String> skills;
+    SkillsAdapter skillsAdapter = new SkillsAdapter();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,35 @@ public class PersonActivity extends AppCompatActivity {
         mail = findViewById(R.id.mail_button);
         linkedIn = findViewById(R.id.linked_button);
         github = findViewById(R.id.github_button);
+        skillsView=findViewById(R.id.skills_recyclerview);
+        skillsView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        skillsView.setAdapter(skillsAdapter);
+    }
+
+    public class SkillsAdapter extends RecyclerView.Adapter<SkillsAdapter.ViewHolder> {
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.skillview,parent,false));
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            holder.textView.setText(skills.get(position));
+        }
+
+        @Override
+        public int getItemCount() {
+            return skills==null?0:skills.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            TextView textView;
+            public ViewHolder(View itemView) {
+                super(itemView);
+                textView=itemView.findViewById(R.id.skill_textview);
+            }
+        }
     }
 
     ArrayList<IdeaData> userIdeas = new ArrayList<>();
@@ -84,6 +117,8 @@ public class PersonActivity extends AppCompatActivity {
     }
 
     private void updateData(final UserData userData) {
+        skills = userData.skills;
+        skillsAdapter.notifyDataSetChanged();
         specialisation.setText(userData.specialisation);
         location.setText(userData.location);
         name.setText(userData.name);
@@ -149,7 +184,7 @@ public class PersonActivity extends AppCompatActivity {
             }
         });
 
-        if (userData.ideas.size() > 0) {
+        if (userData.ideas!=null&&userData.ideas.size() > 0) {
             ideas_text.setVisibility(VISIBLE);
             ideas.setVisibility(VISIBLE);
             ideasAdapter = new PersonActivity.IdeasAdapter();
@@ -160,16 +195,18 @@ public class PersonActivity extends AppCompatActivity {
             while (stringIterator.hasNext())
                 loadIdea(stringIterator.next());
         }
-        if (userData.products.size() > 0) {
+
+        if (userData.products!=null&&userData.products.size() > 0) {
             products_text.setVisibility(VISIBLE);
             products.setVisibility(VISIBLE);
             productsAdapter = new PersonActivity.ProductAdapter();
-            products.setAdapter(productsAdapter);
             products.setLayoutManager(new LinearLayoutManager(this));
+            products.setAdapter(productsAdapter);
             Iterator<String> stringIterator = userData.products.iterator();
             while (stringIterator.hasNext())
                 loadProduct(stringIterator.next());
         }
+
     }
 
     private void loadProduct(String next) {
@@ -180,7 +217,6 @@ public class PersonActivity extends AppCompatActivity {
                 ProductData productData = dataSnapshot.getValue(ProductData.class);
                 if (productData != null && !userProducts.contains(productData)) {
                     userProducts.add(productData);
-                    productsAdapter.notifyDataSetChanged();
                     productsAdapter.notifyItemInserted(userProducts.size() - 1);
                 }
             }
@@ -259,6 +295,7 @@ public class PersonActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(ProductAdapter.ViewHolder holder, int position) {
             holder.title.setText("• "+userProducts.get(position).title);
+            Log.e("obBin===",userProducts.get(position).title);
         }
 
         @Override
@@ -275,6 +312,8 @@ public class PersonActivity extends AppCompatActivity {
             }
         }
     }
+
+
 
 
 }
