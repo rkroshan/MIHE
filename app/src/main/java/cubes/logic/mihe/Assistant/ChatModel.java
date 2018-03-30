@@ -105,7 +105,7 @@ public class ChatModel {
 
         static {
             map.put(1, (new ChatModel(null, "Do you have an idea ? ", "YES", "NO", null, null, null, null, 1)));
-            map.put(2, (new ChatModel(null, "Do you know how to implement that idea ? ", "YES", "NO", null, null, null, null, 2)));
+            map.put(2, (new ChatModel(null, "Do you have the skills required to make a prototype? ", "YES", "NO", null, null, null, null, 2)));
             map.put(3, (new ChatModel(null, "Do you have ambition to become a leader", "YES, Absolutely", "No, I want somthing else", null, null, null, null, 3)));
             map.put(4, (new ChatModel(null, "Do you have a team ?", "YES", "NO, but i want it", null, null, null, null, 4)));
             map.put(5, (new ChatModel(null, "We provide resources required to accomplish your idea", null, null, resources, insights, null, null, 5)));

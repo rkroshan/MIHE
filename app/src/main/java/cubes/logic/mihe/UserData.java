@@ -188,7 +188,7 @@ public class UserData implements Serializable {
 
      String handle;
 
-     ArrayList<String> getSkills() {
+     public ArrayList<String> getSkills() {
         return skills;
     }
 
@@ -282,6 +282,6 @@ public class UserData implements Serializable {
 
     @Override
     public String toString() {
-        return "ClassPojo [skills = " + skills + ", ideas = " + ideas + ", phone = " + phone + ", inst_code = " + inst_code + ", website = " + website + ", location = " + location + ", linkedin = " + linkedin + ", about = " + about + ", submissions = " + submissions + ", gplus = " + gplus + ", followed = " + followed + ", fb = " + fb + ", starred_ideas = " + starred_ideas + ", institution_name = " + institution_name + ", twitter = " + twitter + ", specialisation = " + specialisation + ", followers = " + followers + ", email = " + email + ", name = " + name + ", starred_products = " + starred_products + ", branch = " + branch + ", products = " + products + ", github = " + github + "]";
+        return name+" "+specialisation+" "+ ((skills==null)?"":skills.toString());
     }
 }

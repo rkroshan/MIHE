@@ -1,6 +1,7 @@
 package cubes.logic.mihe.Assistant;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +15,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.Map;
 
+import cubes.logic.mihe.CompetitionSubmissionActivity;
+import cubes.logic.mihe.ContestActivity;
 import cubes.logic.mihe.MainActivity;
 import cubes.logic.mihe.R;
 
@@ -89,7 +92,7 @@ public class AssistantChatFragment extends Fragment {
                 ((MainActivity)getActivity()).setAdapterPage(0,null);
                 break;
             case ChatModel.contest:
-                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                ((MainActivity)getActivity()).startActivity(new Intent(getActivity(),ContestActivity.class));
                 break;
             case ChatModel.hiring:
                 ((MainActivity)getActivity()).setAdapterPage(0,null);
