@@ -28,11 +28,11 @@ public class Explore extends Fragment {
     private static ArrayList<String> mlist = new ArrayList<>();
     static {
         mlist.add("IDEAS");
-        mlist.add("PRODUCTS");
-        mlist.add("MOTIVATIONS");
-        mlist.add("RESOURCES");
-        mlist.add("EVENTS");
-        mlist.add("SCHEMES");
+        mlist.add("SKILL TRAINING");
+        mlist.add("LEGAL FOUNDATION");
+        mlist.add("BUSINESS PLAN");
+        mlist.add("MARKET EXPLORATION");
+        mlist.add("FUNDING");
     }
     GridLayoutManager gridLayoutManager;
     private int width=0;

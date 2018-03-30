@@ -3,6 +3,7 @@ package cubes.logic.mihe.Explore;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -97,27 +98,27 @@ class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
             switch (getAdapterPosition()){
                 case 0:
                     Log.e("Ideas","onClick");
-                    setFragment(new ideas());
+                    StartActivity(0);
                     break;
                 case 1:
-                    Log.e("Product","onClick");
-                    setFragment(new Product_explore());
+                    Log.e("SKILL","onClick");
+                    StartActivity(1);
                     break;
                 case 2:
-                    Log.e("Motivation","onClick");
-                    setFragment(new Motivation_Explore());
+                    Log.e("LEGAL","onClick");
+                    StartActivity(2);
                     break;
                 case 3:
-                    Log.e("Resources","onClick");
-                    setFragment(new Resources());
+                    Log.e("BUSINESS","onClick");
+                    StartActivity(3);
                     break;
                 case 4:
-                    Log.e("Events","onClick");
-                    setFragment(new Event_explore());
+                    Log.e("MARKET","onClick");
+                    StartActivity(4);
                     break;
                 case 5:
-                    Log.e("Schemes","onClick");
-                    setFragment(new Scheme_explore());
+                    Log.e("FUNDING","onClick");
+                    StartActivity(5);
                     break;
             }
         }
@@ -128,5 +129,11 @@ class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
                     .addToBackStack(fragment.toString())
                     .commit();
         }
+    }
+
+    private void StartActivity(int i) {
+        Intent intent = new Intent(context,ResourceActivities.class);
+        intent.putExtra("data",i);
+        context.startActivity(intent);
     }
 }
