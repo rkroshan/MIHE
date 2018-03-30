@@ -52,4 +52,6 @@ public class StringVariables {
 
     public static final String WEBSITE = "WEBSITE";
     public static final String SKILLS = "SKILLS";
+    public static final String COURSES ="COURSES" ;
+    public static final String WEBSITES = "WEBSITES";
 }

@@ -18,14 +18,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="IDEA NAME"
-        android:textStyle="bold"
         android:textSize="20sp"
-        android:textColor="#77000000"
+        android:textColor="#000"
+        android:padding="2dp"
         android:textAppearance="?android:textAppearanceMedium" />
-    <view
+    <View
+        android:id="@+id/publicidea_view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#000"
+        android:background="#c2c2c2"
         android:paddingRight="4dp"
         android:paddingLeft="4dp"
         android:layout_marginBottom="8dp"
@@ -36,10 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textStyle="italic"
-        android:textColor="#000"
         android:text="IDEA Descriptionkejffhferjrere\njeregfjkwerjfbwjhr\nfvbhfw"
-        android:textAppearance="?android:textAppearanceMedium" />
+        android:textAppearance="?android:textAppearanceSmall" />
 
 </LinearLayout>
     </android.support.v7.widget.CardView>

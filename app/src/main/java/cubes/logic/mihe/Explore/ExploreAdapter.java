@@ -98,26 +98,31 @@ class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
             switch (getAdapterPosition()){
                 case 0:
                     Log.e("Ideas","onClick");
-                    StartActivity(0);
+                    context.startActivity(new Intent(context,ideas.class));
                     break;
                 case 1:
                     Log.e("SKILL","onClick");
+                    //websites
                     StartActivity(1);
                     break;
                 case 2:
                     Log.e("LEGAL","onClick");
+                    //courses
                     StartActivity(2);
                     break;
                 case 3:
                     Log.e("BUSINESS","onClick");
+                    //courses
                     StartActivity(3);
                     break;
                 case 4:
                     Log.e("MARKET","onClick");
+                    //courses
                     StartActivity(4);
                     break;
                 case 5:
                     Log.e("FUNDING","onClick");
+                    //courses
                     StartActivity(5);
                     break;
             }

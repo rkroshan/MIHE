@@ -34,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import cubes.logic.mihe.MainActivity;
 import cubes.logic.mihe.R;
@@ -53,6 +54,7 @@ public class SignIn extends AppCompatActivity {
     private int RC_SIGN_IN = 101;
     private DatabaseReference databaseReference;
     private SharedPreferences sharedPreferences;
+    private String UID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,16 +66,13 @@ public class SignIn extends AppCompatActivity {
 
     private void init() {
         sharedPreferences = getSharedPreferences(StringVariables.USER_DATA,0);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child(StringVariables.SIGNIN_USER);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         progressDialog = new ProgressDialog(this);
         google_login = (Button)findViewById(R.id.google_login);
         //google_login = (SignInButton) findViewById(R.id.google_login);
         google_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                progressDialog.setMessage("Getting accounts...");
-                progressDialog.show();
 
                 signIn();
             }
@@ -119,6 +118,7 @@ public class SignIn extends AppCompatActivity {
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             progressDialog.setMessage("Signing you in...");
+            progressDialog.show();
             //progressDialog.show(EntryPage1.this, "", "Signing you in...");
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 
@@ -160,6 +160,10 @@ public class SignIn extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Successful signin",
                                     Toast.LENGTH_SHORT).show();
                             //start retrieving data if exist
+                            progressDialog.dismiss();
+                            Random random = new Random();
+                            int id = random.nextInt(10000);
+                            UID  = "Roshan"+id+"";
                             check_user_signin();
                         }
                     }
@@ -167,20 +171,16 @@ public class SignIn extends AppCompatActivity {
     }
 
     private void check_user_signin() {
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        final DatabaseReference databaseReference1 = databaseReference.child(StringVariables.SIGNIN_USER);
+        databaseReference1.child(UID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int flag = 0;
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
-                    if(ds.getKey() == auth.getCurrentUser().getUid()){
-                        flag=1;
-                        getting_user_data();
-                        break;
-                    }
-                }
-                if(flag==0){
+                if(dataSnapshot==null){
                     create_user();
+                }else {
+                    getting_user_data();
                 }
+
             }
 
             @Override
@@ -190,13 +190,17 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
+    private void nextActivity(){
+        Toast.makeText(getApplicationContext(),"Welcome",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
+    }
+
     private void create_user() {
-        databaseReference.child(auth.getCurrentUser().getUid()).setValue(auth.getCurrentUser().getEmail()).addOnSuccessListener(new OnSuccessListener<Void>() {
+        databaseReference.child(UID).setValue("ahshfshd csfahasahbch").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(),"Welcome",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                finish();
+                nextActivity();
             }
         });
     }
@@ -251,7 +255,6 @@ public class SignIn extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                    finish();
                 }
                 // ...
             }

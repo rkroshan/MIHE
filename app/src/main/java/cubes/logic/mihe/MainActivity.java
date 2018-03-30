@@ -105,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
         adapter = new MainViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
-        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.feed, R.drawable.ic_settings_white_24dp, R.color.colorPrimary);
-        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.network, R.drawable.ic_settings_white_24dp, R.color.colorPrimary);
+        AHBottomNavigationItem item1 = new AHBottomNavigationItem(R.string.feed, R.drawable.feed_icon, R.color.colorPrimary);
+        AHBottomNavigationItem item2 = new AHBottomNavigationItem(R.string.network, R.drawable.network_icon, R.color.colorPrimary);
         AHBottomNavigationItem item3 = new AHBottomNavigationItem(R.string.assistant, R.drawable.ic_settings_white_24dp, R.color.colorAccent);
-        AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.dashboard, R.drawable.ic_settings_white_24dp, R.color.colorPrimaryDark);
-        AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.settings, R.drawable.ic_settings_white_24dp, R.color.colorPrimaryDark);
+        AHBottomNavigationItem item4 = new AHBottomNavigationItem(R.string.dashboard, R.drawable.dashboard, R.color.colorPrimaryDark);
+        AHBottomNavigationItem item5 = new AHBottomNavigationItem(R.string.resources, R.drawable.ic_settings_white_24dp, R.color.colorPrimaryDark);
 
         bottomNavigationItems.add(item1);
         bottomNavigationItems.add(item2);

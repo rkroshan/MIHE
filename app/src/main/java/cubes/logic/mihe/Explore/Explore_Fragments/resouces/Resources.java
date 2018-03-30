@@ -1,5 +1,6 @@
 package cubes.logic.mihe.Explore.Explore_Fragments.resouces;
 
+import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +37,16 @@ public class Resources extends Fragment {
     RecyclerView recyclerView;
     FirebaseRecyclerAdapter<ResourcesObject,ResourcesViewHolder> firebaseRecyclerAdapter;
     DatabaseReference databaseReference;
+    private int data ;
+
+    public Resources(){
+
+    }
+
+    @SuppressLint("ValidFragment")
+    public Resources(int i) {
+        data = i;
+    }
 
     @Nullable
     @Override
