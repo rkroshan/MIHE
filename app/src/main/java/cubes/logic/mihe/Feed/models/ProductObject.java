@@ -12,7 +12,15 @@ import cubes.logic.mihe.R;
  */
 
 public class ProductObject {
-    private String NAME, CATEGORY, DESCRIPTION, IMAGE, MAKERS;
+    private String NAME, CATEGORY, DESCRIPTION, IMAGE, MAKERS, LINK;
+
+    public String getLINK() {
+        return LINK;
+    }
+
+    public void setLINK(String LINK) {
+        this.LINK = LINK;
+    }
 
     public String getMAKERS() {
         return MAKERS;

@@ -126,10 +126,11 @@ public class Feed extends Fragment {
                         .placeholder(R.mipmap.ic_launcher)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(viewHolder.product_imageview);
-                viewHolder.product_category.setText(model.getCATEGORY());
+                viewHolder.setCategory(model.getCATEGORY(),getContext());
                 viewHolder.product_description.setText(model.getDESCRIPTION());
                 viewHolder.product_name.setText(model.getNAME());
                 viewHolder.product_makers.setText(model.getMAKERS());
+                viewHolder.setLink(model.getLINK(),getContext());
             }
         };
 
@@ -148,6 +149,7 @@ public class Feed extends Fragment {
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(viewHolder.event_imageview);
                 viewHolder.event_name.setText(model.getNAME());
+                viewHolder.setLink(model.getLINK(),getContext());
                 /*viewHolder.event_details.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

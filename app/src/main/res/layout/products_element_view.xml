@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="this is basically a cool app ..."
+            android:background="#11000000"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="#000" />
 
@@ -51,7 +52,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:gravity="right"
+            android:background="#88ffffff"
             android:text="by Arpit luyia"
+            android:textStyle="italic"
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="#000" />
     </LinearLayout>

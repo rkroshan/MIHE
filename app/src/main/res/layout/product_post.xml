@@ -45,6 +45,14 @@
             android:textAppearance="?android:textAppearanceSmall"
             android:textColor="#000" />
 
+        <EditText
+            android:id="@+id/product_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="link"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="#000" />
+
         <Button
             android:id="@+id/product_post"
             android:layout_width="match_parent"

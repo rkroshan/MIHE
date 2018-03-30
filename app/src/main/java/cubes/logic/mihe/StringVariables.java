@@ -24,7 +24,32 @@ public class StringVariables {
     public static final String IDEA_NAME = "IDEA_NAME";
     public static final String IDEA_DESCRIPTION = "IDEA_DESCRIPTION";
     public static final String PUBLIC_IDEAS = "PUBLIC_IDEAS";
-    public static final String SPONSERED_IDEAS ="SPONSERED_IDEAS" ;
+    public static final String COMPETITIVE_IDEAS ="COMPETITIVE_IDEAS" ;
     public static final String MAKERS = "MAKERS";
     public static final String BOOK_URL ="BOOK_URL" ;
+    public static final String SIGNIN_USER = "SIGNIN_USER";
+    public static final String USER_ID = "USER_ID";
+    public static final String USERS = "users";
+    public static final String USER_DATA = "USER_DATA";
+    public static final String ABOUT = "ABOUT" ;
+
+    public static final String BRANCH = "BRANCH";
+
+    public static final String GMAIL = "GMAIL" ;
+    public static final String GITHUB ="GITHUB" ;
+    public static final String HANDLE = "HANDLE";
+
+    public static final String IMG_URL = "IMG_URL";
+    public static final String INST_CODE = "INST_CODE";
+
+    public static final String LINKEDIN = "LINKEDIN" ;
+
+    public static final String LOCATION = "LOCATION";
+
+    public static final String USER_NAME = "USER_NAME";
+
+    public static final String SPECIALIZATION = "SPECIALIZATION";
+
+    public static final String WEBSITE = "WEBSITE";
+    public static final String SKILLS = "SKILLS";
 }

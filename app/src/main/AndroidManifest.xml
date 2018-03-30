@@ -32,7 +32,17 @@
         <activity android:name=".TemporaryActivities.resources_post" />
         <activity android:name=".TemporaryActivities.ideas_post" />
         <activity android:name=".RegistrationActivity" />
+        <activity android:name=".SubmissionActivity"></activity>
         <activity android:name=".ContestActivity"></activity>
+
+        <activity android:name=".SignIn.SignIn"
+           >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

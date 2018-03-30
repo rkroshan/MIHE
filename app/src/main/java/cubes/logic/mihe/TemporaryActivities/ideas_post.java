@@ -39,6 +39,7 @@ public class ideas_post extends AppCompatActivity {
     private void init() {
         idea_switch = findViewById(R.id.idea_switch);
         idea_name = findViewById(R.id.idea_name);
+        idea_name.setVisibility(View.GONE);
         idea_description = findViewById(R.id.idea_description);
         post_button = findViewById(R.id.post_button);
 
@@ -46,9 +47,12 @@ public class ideas_post extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    idea_type = StringVariables.SPONSERED_IDEAS;
+                    idea_type = StringVariables.COMPETITIVE_IDEAS;
+                    idea_name.setVisibility(View.VISIBLE);
+
                 } else {
                     idea_type = StringVariables.PUBLIC_IDEAS;
+                    idea_name.setVisibility(View.GONE);
                 }
             }
         });
@@ -56,9 +60,12 @@ public class ideas_post extends AppCompatActivity {
         post_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = idea_name.getText().toString();
+                String name = "";
+                try {
+                     name = idea_name.getText().toString();
+                }catch (Exception e){name = "";}
                 String desc = idea_description.getText().toString();
-                if(!(name.isEmpty())&&!(desc.isEmpty())){
+                if(!(desc.isEmpty())){
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(StringVariables.IDEAS).child(idea_type).push();
                     databaseReference.child(StringVariables.IDEA_NAME).setValue(name);
                     databaseReference.child(StringVariables.IDEA_DESCRIPTION).setValue(desc).addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -1,65 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fitsSystemWindows="true">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="32dp"
+    android:gravity="bottom"
+    android:background="@drawable/splash_background"
+    android:orientation="vertical">
+
+
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:orientation="horizontal">
 
-        <ImageView android:src="@mipmap/mihe"
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_gravity="center"
+        android:layout_height="90dp"
+        android:src="@drawable/ic_mihe_white"/>
 
-        <!-- Email Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="match_parent"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="Email" />
-        </android.support.design.widget.TextInputLayout>
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"/>
 
-        <!-- Password Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Password"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:padding="12dp"
-            android:text="Login"/>
-
-        <TextView android:id="@+id/link_signup"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="No account yet? Create one"
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="90dp"
             android:gravity="center"
-            android:textSize="16dip"/>
+            android:layout_marginTop="4dp"
+            android:padding="8dp"
+            android:src="@mipmap/mihe_text"/>
 
     </LinearLayout>
-</ScrollView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Assisting Innovation"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:layout_marginBottom="48dp"
+        android:textColor="#fff"/>
+
+    <Button
+        android:id="@+id/google_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColor="#f79433"
+        android:textStyle="bold"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:background="@drawable/white_button"
+        android:text="SIGN WITH GOOGLE"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:text="By using Mihe you agree to Mihe's"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:text="Privacy Policy"/>
+    </LinearLayout>
+
+</LinearLayout>

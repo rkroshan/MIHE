@@ -36,7 +36,7 @@ public class product_post extends AppCompatActivity {
     private int SELECT_PICTURE = 2;
     private Uri uri = null;
     ImageView product_imageview;
-    EditText product_category, product_name, product_description, product_makers;
+    EditText product_category, product_name, product_description, product_makers, product_link;
     Button product_post;
 
     @Override
@@ -53,6 +53,7 @@ public class product_post extends AppCompatActivity {
         product_description = findViewById(R.id.product_description);
         product_post = findViewById(R.id.product_post);
         product_makers = findViewById(R.id.product_makers);
+        product_link = findViewById(R.id.product_link);
 
         product_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +69,8 @@ public class product_post extends AppCompatActivity {
                 final String name = product_name.getText().toString();
                 final String description = product_description.getText().toString();
                 final String makers = product_makers.getText().toString();
-                if (uri != null && !(name.isEmpty() && category.isEmpty() && description.isEmpty())) {
+                final String Link = product_link.getText().toString();
+                if (uri != null && !(name.isEmpty() && category.isEmpty() && description.isEmpty() && Link.isEmpty())) {
                     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(StringVariables.PRODUCT_POST).push();
                     StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(StringVariables.PRODUCT_POST);
                     storageReference.child(uri.getLastPathSegment()).putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -79,6 +81,7 @@ public class product_post extends AppCompatActivity {
                             databaseReference.child(StringVariables.CATEGORY).setValue(category);
                             databaseReference.child(StringVariables.DESCRIPTION).setValue(description);
                             databaseReference.child(StringVariables.MAKERS).setValue(makers);
+                            databaseReference.child(StringVariables.LINK).setValue(Link);
                             databaseReference.child(StringVariables.IMAGE).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {

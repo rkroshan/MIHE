@@ -3,6 +3,7 @@ package cubes.logic.mihe.Feed.models;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,8 @@ public class ViewHolders {
     public static class EVENTViewHolder extends RecyclerView.ViewHolder {
         public ImageView event_imageview;
         public TextView event_name, event_time, event_bookmark, event_details;
+        private String URL;
+        private Context mcontext;
 
         public EVENTViewHolder(View itemView) {
             super(itemView);
@@ -28,10 +31,24 @@ public class ViewHolders {
             event_time = itemView.findViewById(R.id.event_time);
             event_bookmark = itemView.findViewById(R.id.event_bookmark);
             event_details = itemView.findViewById(R.id.event_details);
+
+            event_details.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    if(URL!=null) {
+                        try {
+                            intent.setData(Uri.parse(URL));
+                            mcontext.startActivity(intent);
+                        }catch (Exception e){}
+                    }
+                }
+            });
         }
 
-        public void setLink(){
-
+        public void setLink(String url, Context context){
+            URL = url;
+            mcontext = context;
         }
     }
 
@@ -70,6 +87,8 @@ public class ViewHolders {
     public static class PRODUCTViewHolder extends RecyclerView.ViewHolder {
         public ImageView product_imageview;
         public TextView product_category, product_name, product_description,product_makers;
+        private String URL;
+        private Context mcontext;
 
         public PRODUCTViewHolder(View itemView) {
             super(itemView);
@@ -78,6 +97,38 @@ public class ViewHolders {
             product_name = itemView.findViewById(R.id.product_name);
             product_description = itemView.findViewById(R.id.product_description);
             product_makers = itemView.findViewById(R.id.product_makers);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    if(URL!=null) {
+                        try {
+                            intent.setData(Uri.parse(URL));
+                            mcontext.startActivity(intent);
+                        }catch (Exception e){}
+                    }
+                }
+            });
+        }
+
+        public void setLink(String url, Context context){
+            URL = url;
+            mcontext = context;
+        }
+
+        public void setCategory(String category, Context context) {
+            switch (category.toLowerCase()){
+                case "hardware":
+                    product_category.setText(category.toUpperCase());
+                    product_category.setBackgroundColor(ContextCompat.getColor(context,R.color.bottom_nav));
+                    break;
+                case "software":
+                    product_category.setText(category.toUpperCase());
+                    product_category.setBackgroundColor(ContextCompat.getColor(context,R.color.color_green));
+                    break;
+            }
+
         }
     }
 
