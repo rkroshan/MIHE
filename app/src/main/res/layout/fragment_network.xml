@@ -1,13 +1,27 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="cubes.logic.mihe.NetworkFragment">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:drawableRight="@drawable/ic_search_black_24dp"
+        android:id="@+id/network_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter the skills/designation required"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:padding="12dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/network_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="32dp"/>
 
-</FrameLayout>
+</LinearLayout>

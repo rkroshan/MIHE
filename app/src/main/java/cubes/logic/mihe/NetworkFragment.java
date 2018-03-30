@@ -1,6 +1,7 @@
 package cubes.logic.mihe;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,10 +9,14 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +41,7 @@ public class NetworkFragment extends Fragment {
     ArrayList<UserData> userDataArrayList=new ArrayList<>();
     RecyclerView recyclerView;
     UserCardAdapter userCardAdapter;
+    EditText search;
 
 
     @Override
@@ -46,6 +52,22 @@ public class NetworkFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_network, container, false);
         userCardAdapter = new UserCardAdapter();
         recyclerView=view.findViewById(R.id.network_recyclerview);
+        search=view.findViewById(R.id.network_search);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                userCardAdapter.applyFilter(s.toString());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                userCardAdapter.applyFilter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
         recyclerView.setAdapter(userCardAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
@@ -64,6 +86,7 @@ public class NetworkFragment extends Fragment {
                     if(tempUser!=null&&!userDataArrayList.contains(tempUser))
                         userDataArrayList.add(tempUser);
                 }
+                userCardAdapter.refreshFilter();
                 userCardAdapter.notifyDataSetChanged();
             }
 
@@ -77,6 +100,37 @@ public class NetworkFragment extends Fragment {
 
     public class UserCardAdapter extends RecyclerView.Adapter<UserCardAdapter.ViewHolder> {
 
+        String fil="";
+
+        public UserCardAdapter() {
+            filtered = new ArrayList<>();
+            for(UserData u:userDataArrayList)
+                filtered.add(u);
+        }
+
+        public void applyFilter(String str) {
+            filtered.clear();
+            fil = str;
+            for(UserData u:userDataArrayList) {
+                if(u.toString().toLowerCase().contains(fil.toLowerCase())) {
+                    filtered.add(u);
+                }
+            }
+
+            userCardAdapter.notifyDataSetChanged();
+        }
+        public void refreshFilter() {
+            filtered.clear();
+            for(UserData u:userDataArrayList) {
+                if(u.toString().toLowerCase().contains(fil.toLowerCase())) {
+                    filtered.add(u);
+                }
+            }
+            userCardAdapter.notifyDataSetChanged();
+        }
+
+        private ArrayList<UserData> filtered;
+
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.user_card,parent,false));
@@ -84,7 +138,7 @@ public class NetworkFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            UserData userData=userDataArrayList.get(position);
+            final UserData userData=filtered.get(position);
             Glide.with(getActivity())
                     .load(userData.img_url)
                     .asBitmap()
@@ -98,6 +152,12 @@ public class NetworkFragment extends Fragment {
                             holder.user.setImageDrawable(circularDrawable);
                         }
                     });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(),PersonActivity.class).putExtra("id",userData.getHandle()));
+                }
+            });
             holder.name.setText(userData.name);
             holder.institute.setText(userData.institution_name);
             holder.specialisation.setText(userData.specialisation);
@@ -106,7 +166,7 @@ public class NetworkFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return userDataArrayList.size();
+            return filtered.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {

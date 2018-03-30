@@ -285,10 +285,6 @@ public class UserDashboardFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 IdeaData ideaData = dataSnapshot.getValue(IdeaData.class);
                 if (ideaData != null && !userIdeas.contains(ideaData)) {
-                    if (userIdeas.size() == 0) {
-                        ideas_text.setVisibility(View.VISIBLE);
-                        ideas.setVisibility(View.GONE);
-                    }
                     userIdeas.add(ideaData);
                     ideasAdapter.notifyItemInserted(userIdeas.size() - 1);
                 }
@@ -357,7 +353,7 @@ public class UserDashboardFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(IdeasAdapter.ViewHolder holder, int position) {
-            holder.title.setText(userIdeas.get(position).title);
+            holder.title.setText("• "+userIdeas.get(position).title);
         }
 
         @Override
@@ -388,7 +384,7 @@ public class UserDashboardFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ProductAdapter.ViewHolder holder, int position) {
-            holder.title.setText(userProducts.get(position).title);
+            holder.title.setText("• "+userProducts.get(position).title);
         }
 
         @Override

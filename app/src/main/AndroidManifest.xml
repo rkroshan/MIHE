@@ -19,12 +19,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
         <activity android:name=".TemporaryActivities.events_post" />
         <activity android:name=".TemporaryActivities.motivation_post" />
         <activity android:name=".TemporaryActivities.product_post" />
@@ -32,17 +31,15 @@
         <activity android:name=".TemporaryActivities.resources_post" />
         <activity android:name=".TemporaryActivities.ideas_post" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".SubmissionActivity"></activity>
-        <activity android:name=".ContestActivity"></activity>
-
-        <activity android:name=".SignIn.SignIn"
-           >
+        <activity android:name=".SubmissionActivity" />
+        <activity android:name=".ContestActivity" />
+        <activity android:name=".SignIn.SignIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CompetitionSubmissionActivity" />
+        <activity android:name=".PersonActivity"></activity>
     </application>
 
 </manifest>

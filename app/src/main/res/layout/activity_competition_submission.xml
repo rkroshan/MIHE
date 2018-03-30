@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="cubes.logic.mihe.CompetitionSubmissionActivity">
+<EditText
+    android:padding="8dp"
+    android:layout_marginTop="24dp"
+    android:layout_width="match_parent"
+    android:hint="Submission title"
+    android:layout_height="wrap_content"
+    android:id="@+id/submission_edit_title"/>
+    <EditText
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        android:minLines="4"
+        android:hint="Submission details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/submission_edit_details"/>
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Choose category : "/>
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/submission_category_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.AppCompatSpinner>
+    </LinearLayout>
+    <Button
+        android:id="@+id/submission_upload_abstract"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:padding="12dp"
+        android:text="  Upload abstract"
+        android:drawableLeft="@drawable/ic_cloud_upload_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp" />
+
+    <Button
+        android:id="@+id/submission_finish_button"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp" />
+
+</LinearLayout>
