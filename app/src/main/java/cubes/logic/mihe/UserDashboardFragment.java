@@ -1,8 +1,14 @@
 package cubes.logic.mihe;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +20,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +37,7 @@ public class UserDashboardFragment extends Fragment {
     ArrayList<SubmissionData> userSubmissions = new ArrayList<>();
     ArrayList<EventsData> userEvents = new ArrayList<>();
 
-    TextView name, handleText, specialisation, location, submissions_text, ideas_text, products_text,events_text;
+    TextView name, handleText, specialisation, location, submissions_text, ideas_text, products_text, events_text;
     ImageView image, web, mail, linkedIn, github;
 
     String handle = "-L8S3DxEUZsQ_pVodMer";
@@ -38,7 +45,7 @@ public class UserDashboardFragment extends Fragment {
     IdeasAdapter ideasAdapter;
     ProductAdapter productsAdapter;
     EventAdapter eventAdapter;
-    RecyclerView submissions, ideas, products,events;
+    RecyclerView submissions, ideas, products, events;
 
     public UserDashboardFragment() {
         // Required empty public constructor
@@ -60,7 +67,7 @@ public class UserDashboardFragment extends Fragment {
         products_text = view.findViewById(R.id.products_dashboard_textview);
         events_text = view.findViewById(R.id.events_dashboard_textview);
         submissions = view.findViewById(R.id.submissions_dashboard_recyclerview);
-        events=view.findViewById(R.id.events_dashboard_recyclerview);
+        events = view.findViewById(R.id.events_dashboard_recyclerview);
         ideas = view.findViewById(R.id.ideas_dashboard_recyclerview);
         products = view.findViewById(R.id.products_dashboard_recyclerview);
         image = view.findViewById(R.id.user_image_dashboard);
@@ -75,7 +82,7 @@ public class UserDashboardFragment extends Fragment {
     public void onResume() {
         super.onResume();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(handle);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserData userData = dataSnapshot.getValue(UserData.class);
@@ -90,21 +97,74 @@ public class UserDashboardFragment extends Fragment {
         });
     }
 
-    private void updateData(UserData userData) {
+    private void updateData(final UserData userData) {
         specialisation.setText(userData.specialisation);
         location.setText(userData.location);
         name.setText(userData.name);
         handleText.setText("@" + handle);
-        eventAdapter=new EventAdapter();
+        eventAdapter = new EventAdapter();
         events.setAdapter(eventAdapter);
         events.setLayoutManager(new LinearLayoutManager(getActivity()));
         Glide
                 .with(getActivity())
                 .load(userData.img_url)
+                .asBitmap()
                 .centerCrop()
                 .placeholder(R.mipmap.ic_launcher)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(image);
+                .into(new BitmapImageViewTarget(image) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularDrawable = RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
+                        circularDrawable.setCircular(true);
+                        image.setImageDrawable(circularDrawable);
+                    }
+                })
+        ;
+
+        if(userData.getWebsite()==null)
+            web.setVisibility(View.GONE);
+        if(userData.getEmail()==null)
+            mail.setVisibility(View.GONE);
+        if(userData.getLinkedin()==null)
+            linkedIn.setVisibility(View.GONE);
+        if(userData.getGithub()==null)
+            github.setVisibility(View.GONE);
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(userData.getWebsite()));
+                startActivity(i);
+
+            }
+        });
+        mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("mailto:"+userData.getEmail()));
+                startActivity(i);
+            }
+        });
+        linkedIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(userData.getLinkedin()));
+                startActivity(i);
+
+            }
+        });
+        github.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(userData.getGithub()));
+                startActivity(i);
+
+            }
+        });
 
         if (userData.inst_code != null) {
             loadEventCodes(userData.inst_code);
@@ -144,11 +204,11 @@ public class UserDashboardFragment extends Fragment {
 
     private void loadEventCodes(String inst_code) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ecells").child(inst_code);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot childSnapshot : dataSnapshot.child("events").getChildren()) {
-                    loadEvents(((String)childSnapshot.getValue()).trim());
+                for (DataSnapshot childSnapshot : dataSnapshot.child("events").getChildren()) {
+                    loadEvents(((String) childSnapshot.getValue()).trim());
                 }
             }
 
@@ -161,7 +221,7 @@ public class UserDashboardFragment extends Fragment {
 
     private void loadEvents(String eventKey) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("events").child(eventKey);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 EventsData eventsData = dataSnapshot.getValue(EventsData.class);
@@ -182,7 +242,7 @@ public class UserDashboardFragment extends Fragment {
 
     private void loadProduct(String next) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("products").child(next);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ProductData productData = dataSnapshot.getValue(ProductData.class);
@@ -201,7 +261,7 @@ public class UserDashboardFragment extends Fragment {
 
     private void loadSubmission(String next) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("submissions").child(next);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 SubmissionData submissionData = dataSnapshot.getValue(SubmissionData.class);
@@ -220,12 +280,12 @@ public class UserDashboardFragment extends Fragment {
 
     private void loadIdea(String next) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ideas").child(next);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 IdeaData ideaData = dataSnapshot.getValue(IdeaData.class);
                 if (ideaData != null && !userIdeas.contains(ideaData)) {
-                    if(userIdeas.size()==0) {
+                    if (userIdeas.size() == 0) {
                         ideas_text.setVisibility(View.VISIBLE);
                         ideas.setVisibility(View.GONE);
                     }
@@ -253,10 +313,10 @@ public class UserDashboardFragment extends Fragment {
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             EventsData eventsData = userEvents.get(position);
-            holder.name.setText("Event name: "+eventsData.title);
-            holder.venue.setText("Venue: "+ eventsData.venue);
-            holder.time.setText("Time: "+eventsData.time);
-            holder.organiser.setText("Organiser: "+eventsData.institute_name);
+            holder.name.setText("Event name: " + eventsData.title);
+            holder.venue.setText("Venue: " + eventsData.venue);
+            holder.time.setText("Time: " + eventsData.time);
+            holder.organiser.setText("Organiser: " + eventsData.institute_name);
             Glide.with(getActivity())
                     .load(eventsData.image)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -356,8 +416,10 @@ public class UserDashboardFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(SubmissionAdapter.ViewHolder holder, int position) {
-            holder.title.setText(userSubmissions.get(position).title);
-            holder.status.setText(userSubmissions.get(position).status);
+            holder.title.setText("• "+userSubmissions.get(position).title);
+            String temp = userSubmissions.get(position).getStatus().trim().equals("-1")?"Rejected : ":userSubmissions.get(position).getStatus().trim().equals(1)?"Approved : ":"Pending : ";
+            holder.status.setText(temp+userSubmissions.get(position).review);
+            holder.status.setTextColor(userSubmissions.get(position).getStatus().trim().equals("0")?Color.rgb(6,0,1):userSubmissions.get(position).getStatus().trim().equals("-1")? Color.rgb(240,0,0):Color.rgb(0,181,0));
         }
 
         @Override

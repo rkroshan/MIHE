@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cubes.logic.mihe.SubmissionActivity">
+    tools:context="cubes.logic.mihe.ContestActivity">
 
 </android.support.constraint.ConstraintLayout>

@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 public class InvestorData {
 
-    public InvestorData(String name, String email, String phone, String website, String fb, String twitter, String gplus, String linkedin, String about, ArrayList<String> starred_products, ArrayList<String> starred_ideas, ArrayList<String> followed, ArrayList<String> followers) {
+    public InvestorData(String image, String name, String email, String phone, String website, String fb, String twitter, String gplus, String linkedin, String about, ArrayList<String> starred_products, ArrayList<String> starred_ideas, ArrayList<String> followed, ArrayList<String> followers) {
+        this.image = image;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -22,6 +23,16 @@ public class InvestorData {
         this.starred_ideas = starred_ideas;
         this.followed = followed;
         this.followers = followers;
+    }
+
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     private String name;

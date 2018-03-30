@@ -2,13 +2,19 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:padding="8dp">
+    
     <TextView
+        android:text="• Cool Product"
         android:id="@+id/submission_title"
+        android:textSize="18sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
+        android:paddingLeft="12dp"
+        android:textColor="@color/color_green"
+        android:text="Approved: really cool"
         android:id="@+id/submission_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -9,12 +9,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SubmissionActivity extends AppCompatActivity {
+public class ContestActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_submission);
+        setContentView(R.layout.acitivity_contest);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("competition").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

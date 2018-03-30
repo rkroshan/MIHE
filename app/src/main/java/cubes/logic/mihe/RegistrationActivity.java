@@ -69,7 +69,8 @@ public class RegistrationActivity extends AppCompatActivity {
         followers.add("test");
         submissions = new ArrayList<>();
         submissions.add("test");
-        ecellData = new EcellData(institute_name, email, phone, website, fb, twitter, gplus, linkedin, about, events, followers, submissions);
+        String image="";
+        ecellData = new EcellData(image, institute_name, email, phone, website, fb, twitter, gplus, linkedin, about, events, followers, submissions);
         databaseReference.child("ecells").push().setValue(ecellData);
     }
 
@@ -84,7 +85,8 @@ public class RegistrationActivity extends AppCompatActivity {
         starred_products.add("");
         followed.add("");
         followers.add("");
-        InvestorData investorData = new InvestorData(name, email, phone, website, fb, twitter, gplus, linkedin, about, starred_products, starred_ideas, followed, followers);
+        String image="";
+        InvestorData investorData = new InvestorData(image, name, email, phone, website, fb, twitter, gplus, linkedin, about, starred_products, starred_ideas, followed, followers);
         databaseReference.child("investors").push().setValue(investorData);
 
     }

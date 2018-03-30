@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="cubes.logic.mihe.UserDashboardFragment">
 
@@ -22,72 +22,82 @@
                 android:layout_height="128dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@mipmap/ic_launcher"
-                android:visibility="visible" />
+                android:visibility="visible"
+                app:srcCompat="@mipmap/ic_launcher" />
+
             <TextView
-                android:textColor="#000"
-                android:textSize="22dp"
-                android:textAlignment="center"
                 android:id="@+id/name_dashboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="This person"/>
+                android:text="This person"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="22dp" />
 
             <TextView
-                android:textSize="16dp"
-                android:textAlignment="center"
                 android:id="@+id/handle_dashboard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="/@random"/>
-                <TextView
-                    android:id="@+id/specialisation_dashboard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:text="Cool hackerman"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
+                android:text="/@random"
+                android:textAlignment="center"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/specialisation_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="Cool hackerman"
+                android:textAlignment="center"
+                android:textSize="18sp" />
 
 
-
-                <TextView
-                    android:id="@+id/location_dashboard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:text="Chennai, India"
-                    android:textAlignment="center" />
+            <TextView
+                android:id="@+id/location_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:text="Chennai, India"
+                android:textAlignment="center"
+                android:textStyle="italic" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_width="wrap_content"
+
+                android:layout_height="68dp"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:background="@drawable/rounded_card"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="9dp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="9dp">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/web_button"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/ic_internet"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ic_internet" />
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/mail_button"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/email"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/email" />
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/linked_button"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/linked_in"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/linked_in" />
 
 
                 <android.support.v7.widget.AppCompatImageView
@@ -95,55 +105,86 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
-                    app:srcCompat="@drawable/github"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/github" />
 
 
             </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/submissions_dashboard_textview"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="Submissions"
-                android:textSize="16sp" />
+                android:layout_margin="8dp"
+                android:background="@drawable/rounded_card"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/submissions_dashboard_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/submissions_dashboard_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="Submissions"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
 
-
-            <TextView
-                android:id="@+id/ideas_dashboard_textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="Ideas"
-                android:textSize="16sp"
-                android:visibility="visible" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/ideas_dashboard_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/submissions_dashboard_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/products_dashboard_textview"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="Products"
-                android:textSize="16sp"
-                android:visibility="visible" />
+                android:layout_margin="8dp"
+                android:background="@drawable/rounded_card"
+                android:orientation="vertical"
+                android:padding="12dp">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/products_dashboard_recyclerview"
+                <TextView
+                    android:id="@+id/ideas_dashboard_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="Ideas"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:visibility="visible" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/ideas_dashboard_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@drawable/rounded_card"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+
+                <TextView
+                    android:id="@+id/products_dashboard_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Products"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:visibility="visible" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/products_dashboard_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
 
 
             <TextView

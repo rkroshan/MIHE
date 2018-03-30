@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
@@ -28,6 +29,7 @@ import cubes.logic.mihe.TemporaryActivities.schemes_post;
 public class MainActivity extends AppCompatActivity {
 
 
+    private FloatingActionButton fab;
     private AHBottomNavigationViewPager viewPager;
     private MainViewPagerAdapter adapter;
     private AHBottomNavigation bottomNavigation;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fab=findViewById(R.id.more_fab);
         SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
         String id=sharedPreferences.getString("id",null);
 
@@ -129,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         bottomNavigation.setTranslucentNavigationEnabled(true);
+        bottomNavigation.manageFloatingActionButtonBehavior(fab);
     }
 
     @Override

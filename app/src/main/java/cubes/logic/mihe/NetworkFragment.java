@@ -88,6 +88,7 @@ public class NetworkFragment extends Fragment {
             Glide.with(getActivity())
                     .load(userData.img_url)
                     .asBitmap()
+                    .centerCrop()
                     .placeholder(R.mipmap.ic_launcher_round)
                     .into(new BitmapImageViewTarget(holder.user){
                         @Override
