@@ -47,6 +47,8 @@
         <activity android:name=".TemporaryActivities.Website_post"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".Explore.Explore_Fragments.Product_explore"
+            android:screenOrientation="portrait"/>
         <service android:name=".Services.FCMNotificationService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

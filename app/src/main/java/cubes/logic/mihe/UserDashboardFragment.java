@@ -52,7 +52,7 @@ public class UserDashboardFragment extends Fragment {
     TextView name, specialisation, location, submissions_text, ideas_text, products_text, events_text;
     ImageView image, web, mail, linkedIn, github,fb,add_event,add_product,add_idea,add_submission;
 
-    String handle = "-L8T12XjiZfa7twNecYg";
+    String handle = "-L8S3DxEUZsQ_pVodMer";
     SubmissionAdapter submissionsAdapter;
     EcellSubmissionAdapter ecellSubmissionsAdapter;
     IdeasAdapter ideasAdapter;
@@ -78,7 +78,6 @@ public class UserDashboardFragment extends Fragment {
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
         type = sharedPreferences.getInt("type",StringVariables.user);
-        type = StringVariables.ecell;
         name = view.findViewById(R.id.name_dashboard);
         specialisation = view.findViewById(R.id.specialisation_dashboard);
         location = view.findViewById(R.id.location_dashboard);
@@ -183,7 +182,7 @@ public class UserDashboardFragment extends Fragment {
                 }
             });
         }
-        else if(true||type==StringVariables.ecell){
+        else if(type==StringVariables.ecell){
             Log.d("test","in loading xyz");
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ecells").child(handle);
             databaseReference.addValueEventListener(new ValueEventListener() {

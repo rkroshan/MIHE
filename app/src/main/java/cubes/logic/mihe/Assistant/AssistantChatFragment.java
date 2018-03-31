@@ -17,6 +17,8 @@ import java.util.Map;
 
 import cubes.logic.mihe.CompetitionSubmissionActivity;
 import cubes.logic.mihe.ContestActivity;
+import cubes.logic.mihe.Explore.Explore_Fragments.Product_explore;
+import cubes.logic.mihe.Explore.ResourceActivities;
 import cubes.logic.mihe.MainActivity;
 import cubes.logic.mihe.R;
 
@@ -89,7 +91,7 @@ public class AssistantChatFragment extends Fragment {
     void loadStuff(String str) {
         switch (str) {
             case ChatModel.business_model:
-                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                ((MainActivity)getActivity()).startActivity(new Intent(getActivity(),ResourceActivities.class).putExtra("data",3));
                 break;
             case ChatModel.contest:
                 ((MainActivity)getActivity()).startActivity(new Intent(getActivity(),ContestActivity.class));
@@ -104,10 +106,10 @@ public class AssistantChatFragment extends Fragment {
                 ((MainActivity)getActivity()).setAdapterPage(1,null);
                 break;
             case ChatModel.products:
-                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                ((MainActivity)getActivity()).startActivity(new Intent(getActivity(), Product_explore.class));
                 break;
             case ChatModel.resources:
-                ((MainActivity)getActivity()).setAdapterPage(0,null);
+                ((MainActivity)getActivity()).setAdapterPage(4,null);
                 break;
             case ChatModel.skills:
                 ((MainActivity)getActivity()).setAdapterPage(0,null);
