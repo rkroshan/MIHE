@@ -1,6 +1,7 @@
 package cubes.logic.mihe.Assistant;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +80,9 @@ class AssistantChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 holder.main.setVisibility(View.VISIBLE);
                 holder.yes.setVisibility(View.VISIBLE);
                 holder.yes.setBackgroundResource(R.drawable.white_button);
+                holder.yes.setTextColor(ContextCompat.getColor(context,R.color.black));
                 holder.no.setBackgroundResource(R.drawable.white_button);
+                holder.no.setTextColor(ContextCompat.getColor(context,R.color.black));
                 ;
                 holder.yes.setText(chatModel.getOPTION_YES());
                 if (position == history.size() - 1) {
@@ -91,6 +94,7 @@ class AssistantChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                             int pos = chatModel.getId() * 2;
                             ChatModel chatModel1 = map.get(pos);
                             holder.yes.setBackgroundResource(R.drawable.green_button);
+                            holder.yes.setTextColor(ContextCompat.getColor(context,R.color.WHITE));
                             chatFragment.addToHistory(chatModel1);
                         }
                     });
@@ -98,12 +102,16 @@ class AssistantChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 if (position != history.size() - 1) {
                     if (history.get(position + 1).getId() == 2 * chatModel.getId()) {
                         holder.yes.setBackgroundResource(R.drawable.green_button);
+                        holder.yes.setTextColor(ContextCompat.getColor(context,R.color.WHITE));
                         holder.no.setBackgroundResource(R.drawable.white_button);
+                        holder.no.setTextColor(ContextCompat.getColor(context,R.color.black));
                         ;
                     }
                     if (history.get(position + 1).getId() == 2 * chatModel.getId() + 1) {
                         holder.no.setBackgroundResource(R.drawable.green_button);
+                        holder.no.setTextColor(ContextCompat.getColor(context,R.color.WHITE));
                         holder.yes.setBackgroundResource(R.drawable.white_button);
+                        holder.yes.setTextColor(ContextCompat.getColor(context,R.color.black));
                     }
                 }
             }
@@ -122,6 +130,7 @@ class AssistantChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                             int pos = chatModel.getId() * 2 + 1;
                             ChatModel chatModel1 = map.get(pos);
                             holder.no.setBackgroundResource(R.drawable.green_button);
+                            holder.no.setTextColor(ContextCompat.getColor(context,R.color.WHITE));
                             chatFragment.addToHistory(chatModel1);
                         }
                     });

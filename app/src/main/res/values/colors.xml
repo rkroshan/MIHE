@@ -14,6 +14,8 @@
     <color name="color_green">#5CA532</color>
     
 <color name="extra_color">#ffdd00</color>
+    <color name="black">#000</color>
+    <color name="WHITE">#fff</color>
 
 
 </resources>
