@@ -2,6 +2,7 @@ package cubes.logic.mihe.Explore;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,6 +13,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import cubes.logic.mihe.Explore.Explore_Fragments.Scheme_explore;
 import cubes.logic.mihe.Explore.Explore_Fragments.ideas.ideas;
 /*import cubes.logic.mihe.Explore.Explore_Fragments.resouces.resource_fragment.business_plan;
 import cubes.logic.mihe.Explore.Explore_Fragments.resouces.resource_fragment.funding;
@@ -30,6 +32,7 @@ public class ResourceActivities extends AppCompatActivity {
 
     ViewPager resource_activity_viewpager;
     private int i;
+    TabLayout resourcesTabLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class ResourceActivities extends AppCompatActivity {
         i = getIntent().getIntExtra("data", 0);
         Log.e("data",i+"");
         resource_activity_viewpager = findViewById(R.id.resource_activity_viewpager);
+        resourcesTabLayout = findViewById(R.id.resources_tab_layout);
         setupViewPager(resource_activity_viewpager);
     }
 
@@ -47,17 +51,20 @@ public class ResourceActivities extends AppCompatActivity {
             case 1:
 
                 adapter.addFragment(new Resources(i), "e_books");
-                adapter.addFragment(new Courses(i), "Courses");
+                adapter.addFragment(new Websites(i), "Courses");
                 break;
             case 2:
             case 3:
-            case 4:
             case 5:
                 adapter.addFragment(new Resources(i), "e_books");
                 adapter.addFragment(new Websites(i), "Websites");
                 break;
+            case 4:
+                adapter.addFragment(new Resources(i), "e_books");
+                adapter.addFragment(new Scheme_explore(1),"Current Stats");
         }
         viewPager.setAdapter(adapter);
+        resourcesTabLayout.setupWithViewPager(viewPager);
 
     }
 

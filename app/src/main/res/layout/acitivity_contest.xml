@@ -5,21 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp"
+    android:padding="16dp"
     tools:context="cubes.logic.mihe.ContestActivity">
 
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        android:textAlignment="center"
-        android:padding="8dp"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:background="@color/color_green"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 - 5 April 2018"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:background="@drawable/rounded_rectangle"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1 April 2018 to 5 Apr 2018"/>
+        android:orientation="vertical">
+
     <TextView
         android:padding="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to MIHE monthly contest.\nThis contest is aimed at people who have an idea and requires mentorhsip and guidance from our experts.\nThrough this competition, submissions selected will be forwarded to different governmental incubation centres, where you can further enhance your idea and finally develop a product ready for market."/>
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_margin="8dp"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:text="Welcome to MIHE monthly contest"/>
+        <TextView
+            android:textColor="@color/colorPrimary"
+        android:padding="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:lineSpacingExtra="8sp"
+            android:textAppearance="?android:textAppearanceMedium"
+        android:text="This contest is aimed at people who have an idea and requires mentorhsip and guidance from our experts."/>
+
+    <TextView
+        android:padding="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textColor="#009900"
+        android:lineSpacingExtra="8dp"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:text="Through this competition, submissions selected will be forwarded to different governmental incubation centres, where you can further enhance your idea and finally develop a product ready for market."/>
+
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,14 +77,16 @@
     <Button
         android:layout_margin="8dp"
         android:layout_weight="1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
+        android:background="@drawable/white_button"
         android:layout_height="wrap_content"
         android:text="Download rules"/>
     <Button
         android:id="@+id/participate_button"
         android:layout_margin="8dp"
         android:layout_weight="1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
+        android:background="@drawable/white_button"
         android:layout_height="wrap_content"
         android:text="Participate here"/>
     </LinearLayout>

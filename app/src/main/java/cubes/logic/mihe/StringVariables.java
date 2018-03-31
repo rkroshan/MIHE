@@ -57,4 +57,5 @@ public class StringVariables {
 
     public static final int user=0,ecell=1,entrepreneur=2,investor=3;
 
+    public static final String MARKET = "MARKET";
 }
