@@ -49,6 +49,8 @@ public class UserDashboardFragment extends Fragment {
     ArrayList<SubmissionData> ecellSubmissions = new ArrayList<>();
     ArrayList<EventsData> userEvents = new ArrayList<>();
 
+    String personName;
+
     TextView name, specialisation, location, submissions_text, ideas_text, products_text, events_text;
     ImageView image, web, mail, linkedIn, github,fb,add_event,add_product,add_idea,add_submission;
 
@@ -102,13 +104,13 @@ public class UserDashboardFragment extends Fragment {
         add_idea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(),ideas_post.class));
+                getActivity().startActivity(new Intent(getActivity(),ideas_post.class).putExtra("name",personName).putExtra("id",handle));
             }
         });
         add_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().startActivity(new Intent(getActivity(),product_post.class));
+                getActivity().startActivity(new Intent(getActivity(),product_post.class).putExtra("id",handle));
             }
         });
         add_event.setOnClickListener(new View.OnClickListener() {
@@ -310,6 +312,7 @@ public class UserDashboardFragment extends Fragment {
         skillsAdapter.notifyDataSetChanged();
         specialisation.setText(userData.specialisation);
         location.setText(userData.location);
+        personName=userData.name;
         name.setText(userData.name);
         eventAdapter = new EventAdapter();
         events.setAdapter(eventAdapter);
@@ -405,7 +408,7 @@ public class UserDashboardFragment extends Fragment {
             ideas.setAdapter(ideasAdapter);
             ideas.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-            Iterator<String> stringIterator = userData.ideas.iterator();
+            Iterator<String> stringIterator = userData.ideas.values().iterator();
             while (stringIterator.hasNext())
                 loadIdea(stringIterator.next());
         }
@@ -415,7 +418,7 @@ public class UserDashboardFragment extends Fragment {
             productsAdapter = new ProductAdapter();
             products.setAdapter(productsAdapter);
             products.setLayoutManager(new LinearLayoutManager(getActivity()));
-            Iterator<String> stringIterator = userData.products.iterator();
+            Iterator<String> stringIterator = userData.products.values().iterator();
             while (stringIterator.hasNext())
                 loadProduct(stringIterator.next());
         }
@@ -460,7 +463,7 @@ public class UserDashboardFragment extends Fragment {
     }
 
     private void loadProduct(String next) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("products").child(next);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("PRODUCT_POST").child(next);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -501,7 +504,7 @@ public class UserDashboardFragment extends Fragment {
     }
 
     private void loadIdea(String next) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ideas").child(next);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("IDEAS").child("PUBLIC_IDEAS").child(next);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -583,7 +586,7 @@ public class UserDashboardFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(IdeasAdapter.ViewHolder holder, int position) {
-            holder.title.setText("• "+userIdeas.get(position).title);
+            holder.title.setText("• "+userIdeas.get(position).IDEA_DESCRIPTION);
         }
 
         @Override
@@ -614,7 +617,7 @@ public class UserDashboardFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ProductAdapter.ViewHolder holder, int position) {
-            holder.title.setText("• "+userProducts.get(position).title);
+            holder.title.setText("• "+userProducts.get(position).NAME);
         }
 
         @Override

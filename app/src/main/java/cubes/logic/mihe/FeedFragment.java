@@ -106,9 +106,9 @@ public class FeedFragment extends Fragment {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        public void addFragment(Fragment fragment, String name) {
             mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+            mFragmentTitleList.add(name);
         }
 
         @Override

@@ -21,7 +21,7 @@ public class StringVariables {
     public static final String IMAGE = "IMAGE";
     public static final String AUTHOR = "AUTHOR";
     public static final String DOWNLOAD_URL = "DOWNLOAD_URL";
-    public static final String IDEA_NAME = "IDEA_NAME";
+    public static final String IDEA_NAME = "name";
     public static final String IDEA_DESCRIPTION = "IDEA_DESCRIPTION";
     public static final String PUBLIC_IDEAS = "PUBLIC_IDEAS";
     public static final String COMPETITIVE_IDEAS ="COMPETITIVE_IDEAS" ;
@@ -32,6 +32,9 @@ public class StringVariables {
     public static final String USERS = "users";
     public static final String USER_DATA = "USER_DATA";
     public static final String ABOUT = "ABOUT" ;
+    public static final String THINKER = "thinker" ;
+
+    public static final String USER_SHAREDPREF = "thinker" ;
 
     public static final String BRANCH = "BRANCH";
 

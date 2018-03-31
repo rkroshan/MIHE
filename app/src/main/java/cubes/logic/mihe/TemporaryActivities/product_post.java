@@ -36,6 +36,7 @@ public class product_post extends AppCompatActivity {
     private int SELECT_PICTURE = 2;
     private Uri uri = null;
     ImageView product_imageview;
+    String handle;
     EditText product_category, product_name, product_description, product_makers, product_link;
     Button product_post;
 
@@ -43,6 +44,7 @@ public class product_post extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_post);
+        handle = getIntent().getExtras().getString("id");
         init();
     }
 
@@ -86,7 +88,7 @@ public class product_post extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
-                                    finish();
+                                    addProductToUser(databaseReference.getKey());
                                 }
                             });
                         }
@@ -94,6 +96,17 @@ public class product_post extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void addProductToUser(String key) {
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(handle).child("products").push();
+        databaseReference.setValue(key).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                finish();
+            }
+        });
+
     }
 
     private void checkpermission() {

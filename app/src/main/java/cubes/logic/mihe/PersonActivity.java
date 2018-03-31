@@ -189,7 +189,7 @@ public class PersonActivity extends AppCompatActivity {
             ideas.setAdapter(ideasAdapter);
             ideas.setLayoutManager(new LinearLayoutManager(this));
 
-            Iterator<String> stringIterator = userData.ideas.iterator();
+            Iterator<String> stringIterator = userData.ideas.values().iterator();
             while (stringIterator.hasNext())
                 loadIdea(stringIterator.next());
         }
@@ -200,7 +200,7 @@ public class PersonActivity extends AppCompatActivity {
             productsAdapter = new PersonActivity.ProductAdapter();
             products.setLayoutManager(new LinearLayoutManager(this));
             products.setAdapter(productsAdapter);
-            Iterator<String> stringIterator = userData.products.iterator();
+            Iterator<String> stringIterator = userData.products.values().iterator();
             while (stringIterator.hasNext())
                 loadProduct(stringIterator.next());
         }
@@ -228,7 +228,7 @@ public class PersonActivity extends AppCompatActivity {
 
 
     private void loadIdea(String next) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ideas").child(next);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("IDEAS").child("PUBLIC_IDEAS").child(next);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -261,7 +261,7 @@ public class PersonActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(IdeasAdapter.ViewHolder holder, int position) {
-            holder.title.setText("• "+userIdeas.get(position).title);
+            holder.title.setText("• "+userIdeas.get(position).name);
         }
 
         @Override
@@ -292,8 +292,8 @@ public class PersonActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(ProductAdapter.ViewHolder holder, int position) {
-            holder.title.setText("• "+userProducts.get(position).title);
-            Log.e("obBin===",userProducts.get(position).title);
+            holder.title.setText("• "+userProducts.get(position).NAME);
+            Log.e("obBin===",userProducts.get(position).NAME);
         }
 
         @Override

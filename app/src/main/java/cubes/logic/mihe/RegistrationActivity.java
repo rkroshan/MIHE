@@ -22,7 +22,7 @@ public class RegistrationActivity extends AppCompatActivity {
 //        String id=bundle.getString("id");
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
-        setValue(null);
+//        setValue(null);
         Ecell();
         Investor();
         Submission();
@@ -32,33 +32,32 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-    void setValue(View view) {
-        String phone = "", inst_code = "", website = "", location = "", linkedin = "", about = "", gplus = "", fb = "", institution_name = "", twitter = "", specialisation = "", email = "", name = "", branch = "", github = "",img_url="",handle="";
-        ArrayList<String> skills, ideas, submissions, followed, starred_ideas, followers, starred_products, products;
-        skills = new ArrayList();
-        skills.add("test");
-        skills.add("random");
-        ideas = new ArrayList();
-        ideas.add("ranodm");
-        submissions = new ArrayList();
-        submissions.add("random");
-        followed = new ArrayList();
-        followed.add("random");
-        starred_ideas = new ArrayList();
-        starred_ideas.add("random");
-        followers = new ArrayList();
-        followers.add("random");
-        starred_products = new ArrayList();
-        starred_products.add("randmo");
-        products = new ArrayList();
-        products.add("random");
-        UserData userData;;
-        userData = new UserData(skills, ideas, phone, inst_code, website, location, linkedin, about, submissions, gplus, followed, fb, starred_ideas, institution_name, twitter, specialisation, followers, email, name, starred_products, branch, products, github,img_url,handle);
-        databaseReference.push().setValue(userData);
-
-
-    }
-
+//    void setValue(View view) {
+//        String phone = "", inst_code = "", website = "", location = "", linkedin = "", about = "", gplus = "", fb = "", institution_name = "", twitter = "", specialisation = "", email = "", name = "", branch = "", github = "",img_url="",handle="";
+//        ArrayList<String> skills, ideas, submissions, followed, starred_ideas, followers, starred_products, products;
+//        skills = new ArrayList();
+//        skills.add("test");
+//        skills.add("random");
+//        ideas = new ArrayList();
+//        ideas.add("ranodm");
+//        submissions = new ArrayList();
+//        submissions.add("random");
+//        followed = new ArrayList();
+//        followed.add("random");
+//        starred_ideas = new ArrayList();
+//        starred_ideas.add("random");
+//        followers = new ArrayList();
+//        followers.add("random");
+//        starred_products = new ArrayList();
+//        starred_products.add("randmo");
+//        products = new ArrayList();
+//        products.add("random");
+//        UserData userData;;
+//        userData = new UserData(skills, ideas, phone, inst_code, website, location, linkedin, about, submissions, gplus, followed, fb, starred_ideas, institution_name, twitter, specialisation, followers, email, name, starred_products, branch, products, github,img_url,handle);
+//        databaseReference.push().setValue(userData);
+//
+//
+//    }
     void Ecell() {
         EcellData ecellData;
         String institute_name = "NIT PATNA", email = "test@ecell.com", phone = "", website = "ecell.com", fb = "fb.com/ecell", twitter = "twitter.com", gplus = "plus.google.com", linkedin = "linkedin.com", about = "Official e-cell for NIT PATNA";

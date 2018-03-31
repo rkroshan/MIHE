@@ -2,6 +2,7 @@ package cubes.logic.mihe;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by cogito on 3/25/18.
@@ -14,7 +15,7 @@ public class UserData implements Serializable {
 
     }
 
-    public ArrayList<String> getIdeas() {
+    public HashMap<String,String> getIdeas() {
         return ideas;
     }
 
@@ -94,7 +95,7 @@ public class UserData implements Serializable {
         return branch;
     }
 
-    public ArrayList<String> getProducts() {
+    public HashMap<String,String> getProducts() {
         return products;
     }
 
@@ -110,7 +111,7 @@ public class UserData implements Serializable {
         return handle;
     }
 
-    UserData(ArrayList<String> skills, ArrayList<String> ideas, String phone, String inst_code, String website, String location, String linkedin, String about, ArrayList<String> submissions, String gplus, ArrayList<String> followed, String fb, ArrayList<String> starred_ideas, String institution_name, String twitter, String specialisation, ArrayList<String> followers, String email, String name, ArrayList<String> starred_products, String branch, ArrayList<String> products, String github, String img_url, String handle) {
+    UserData(ArrayList<String> skills, HashMap<String,String> ideas, String phone, String inst_code, String website, String location, String linkedin, String about, ArrayList<String> submissions, String gplus, ArrayList<String> followed, String fb, ArrayList<String> starred_ideas, String institution_name, String twitter, String specialisation, ArrayList<String> followers, String email, String name, ArrayList<String> starred_products, String branch, HashMap<String,String> products, String github, String img_url, String handle) {
         this.skills = skills;
         this.ideas = ideas;
         this.phone = phone;
@@ -140,7 +141,7 @@ public class UserData implements Serializable {
 
      ArrayList<String> skills;
 
-     ArrayList<String> ideas;
+     HashMap<String,String> ideas;
 
      String phone;
 
@@ -180,7 +181,7 @@ public class UserData implements Serializable {
 
      String branch;
 
-     ArrayList<String> products;
+     HashMap<String,String> products;
 
      String github;
 

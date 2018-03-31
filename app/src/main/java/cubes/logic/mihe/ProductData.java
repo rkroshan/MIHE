@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class ProductData {
-    String title;
+    String NAME;
     String details;
     String link;
     String image;
@@ -36,7 +36,7 @@ public class ProductData {
 
         ProductData that = (ProductData) o;
 
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
+        if (NAME != null ? !NAME.equals(that.NAME) : that.NAME != null) return false;
         if (details != null ? !details.equals(that.details) : that.details != null) return false;
         if (link != null ? !link.equals(that.link) : that.link != null) return false;
         if (image != null ? !image.equals(that.image) : that.image != null) return false;
@@ -50,7 +50,7 @@ public class ProductData {
 
     @Override
     public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
+        int result = NAME != null ? NAME.hashCode() : 0;
         result = 31 * result + (details != null ? details.hashCode() : 0);
         result = 31 * result + (link != null ? link.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
@@ -61,8 +61,8 @@ public class ProductData {
         return result;
     }
 
-    public ProductData(String title, String details, String link, String image, String category, ArrayList<String> makers, ArrayList<String> inv_stars, ArrayList<String> user_stars) {
-        this.title = title;
+    public ProductData(String NAME, String details, String link, String image, String category, ArrayList<String> makers, ArrayList<String> inv_stars, ArrayList<String> user_stars) {
+        this.NAME = NAME;
         this.details = details;
         this.link = link;
         this.image = image;
@@ -72,12 +72,12 @@ public class ProductData {
         this.user_stars = user_stars;
     }
 
-    public String getTitle() {
-        return title;
+    public String getNAME() {
+        return NAME;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setNAME(String NAME) {
+        this.NAME = NAME;
     }
 
     public String getDetails() {

@@ -19,7 +19,7 @@
         android:id="@+id/motivation_post_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="post title" />
+        android:hint="post name" />
 
     <EditText
         android:id="@+id/motivation_post_textview_link"
