@@ -144,7 +144,7 @@ class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
                     break;
                 case 4:
                     Log.e("MARKET","onClick");
-                    //courses
+                    //images
                     StartActivity(4);
                     break;
                 case 5:

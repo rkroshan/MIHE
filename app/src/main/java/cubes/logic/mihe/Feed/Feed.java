@@ -172,7 +172,7 @@ public class Feed extends Fragment {
             protected void populateViewHolder(ViewHolders.SCHEMESViewHolder viewHolder, SchemeObject model, int position) {
                 Log.e("SchemeRef viewholder", "working");
                 Glide.with(getContext()).load(model.getIMAGE()).placeholder(R.mipmap.ic_launcher).into(viewHolder.scheme_image);
-                viewHolder.setLink(model.getLINK(),getContext());
+                viewHolder.setLink(model.getLINK(),getContext(),0);
                /* viewHolder.event_details.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

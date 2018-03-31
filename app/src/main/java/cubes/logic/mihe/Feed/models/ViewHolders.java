@@ -167,16 +167,20 @@ public class ViewHolders {
             });
         }
 
-        public void setLink(String url, Context context) {
-            URL = url;
-            mcontext = context;
+        public void setLink(String url, Context context, int data) {
+            if (data != 1) {
+                URL = url;
+                mcontext = context;
+            }else{
+                scheme_viewdetails.setVisibility(View.GONE);
+            }
         }
     }
 
     public static class WebsiteViewHolder extends RecyclerView.ViewHolder {
         ImageView website_imageview;
         TextView website_title, website_description;
-        String Link="";
+        String Link = "";
         Context mcontext;
 
         public WebsiteViewHolder(View itemView) {
@@ -213,15 +217,15 @@ public class ViewHolders {
             ;
         }
 
-        public void setWebsite_title(String data){
+        public void setWebsite_title(String data) {
             website_title.setText(data);
         }
 
-        public void setWebsite_description(String data){
+        public void setWebsite_description(String data) {
             website_description.setText(data);
         }
 
-        public void setLink(String url,Context context){
+        public void setLink(String url, Context context) {
             Link = url;
             mcontext = context;
         }
