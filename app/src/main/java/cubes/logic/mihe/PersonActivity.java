@@ -42,7 +42,6 @@ public class PersonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_person);
         name = findViewById(R.id.name_person);
         handle = getIntent().getExtras().getString("id");
-        handleText = findViewById(R.id.handle_person);
         specialisation = findViewById(R.id.specialisation_person);
         location = findViewById(R.id.location_person);
         ideas_text = findViewById(R.id.ideas_person_textview);
@@ -88,7 +87,7 @@ public class PersonActivity extends AppCompatActivity {
     ArrayList<IdeaData> userIdeas = new ArrayList<>();
     ArrayList<ProductData> userProducts = new ArrayList<>();
 
-    TextView name, handleText, specialisation, location, ideas_text, products_text;
+    TextView name, specialisation, location, ideas_text, products_text;
     ImageView image, web, mail, linkedIn, github;
 
     String handle;
@@ -122,7 +121,6 @@ public class PersonActivity extends AppCompatActivity {
         specialisation.setText(userData.specialisation);
         location.setText(userData.location);
         name.setText(userData.name);
-        handleText.setText("@" + handle);
         Glide
                 .with(PersonActivity.this)
                 .load(userData.img_url)

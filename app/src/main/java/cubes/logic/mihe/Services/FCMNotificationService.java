@@ -55,7 +55,7 @@ public class FCMNotificationService extends FirebaseMessagingService {
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.mihe)
+                .setSmallIcon(R.mipmap.mihe_white)
                 .setContentTitle(notificationTitle)
                 .setContentText(notificationBody)
                 .setVibrate(new long[]{100})

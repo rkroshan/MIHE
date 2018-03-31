@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_margin="8dp">
+    <TextView
+        android:id="@+id/submission_department_ecell"
+        android:textSize="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Category: Agriculture" />
+
+    <TextView
+        android:textSize="20sp"
+        android:id="@+id/submission_title_ecell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Awesome project!" />
+
+    <TextView
+        android:text="so this is our project which has been made by us in this manner and so we do this thing"
+        android:minLines="3"
+        android:id="@+id/submission_details_ecell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/download_abstract"
+        android:drawableLeft="@drawable/ic_file_download_black_24dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Download abstract" />
+
+    <EditText
+        android:id="@+id/remarks_submission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Remarks"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:textColor="#fff"
+            android:backgroundTint="@color/color_green"
+            android:id="@+id/approve_submission"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="Approve" />
+
+        <Button
+            android:textColor="#fff"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:id="@+id/reject_submission"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="Reject" />
+    </LinearLayout>
+
+</LinearLayout>

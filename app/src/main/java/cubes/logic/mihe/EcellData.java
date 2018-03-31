@@ -9,6 +9,9 @@ import java.util.ArrayList;
 public class EcellData {
 
 
+    public EcellData() {
+
+    }
     public EcellData(String image, String institute_name, String email, String phone, String website, String fb, String twitter, String gplus, String linkedin, String about, ArrayList<String> events, ArrayList<String> followers, ArrayList<String> submissions) {
         this.image = image;
         this.institute_name = institute_name;

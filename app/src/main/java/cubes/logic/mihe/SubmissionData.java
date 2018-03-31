@@ -8,11 +8,19 @@ import java.util.ArrayList;
 
 public class SubmissionData {
 
-    String title,ecellcode,details,link,status,review;
+    String title,ecellcode,details,link,status,review,department,handle;
     ArrayList<String> submitters;
 
     public  SubmissionData() {
 
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     @Override

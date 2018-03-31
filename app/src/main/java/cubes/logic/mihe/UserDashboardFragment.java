@@ -1,6 +1,7 @@
 package cubes.logic.mihe;
 
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -17,8 +19,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -41,13 +46,15 @@ public class UserDashboardFragment extends Fragment {
     ArrayList<IdeaData> userIdeas = new ArrayList<>();
     ArrayList<ProductData> userProducts = new ArrayList<>();
     ArrayList<SubmissionData> userSubmissions = new ArrayList<>();
+    ArrayList<SubmissionData> ecellSubmissions = new ArrayList<>();
     ArrayList<EventsData> userEvents = new ArrayList<>();
 
-    TextView name, handleText, specialisation, location, submissions_text, ideas_text, products_text, events_text;
+    TextView name, specialisation, location, submissions_text, ideas_text, products_text, events_text;
     ImageView image, web, mail, linkedIn, github,fb,add_event,add_product,add_idea,add_submission;
 
-    String handle = "-L8S3DxEUZsQ_pVodMer";
+    String handle = "-L8T12XjiZfa7twNecYg";
     SubmissionAdapter submissionsAdapter;
+    EcellSubmissionAdapter ecellSubmissionsAdapter;
     IdeasAdapter ideasAdapter;
     ProductAdapter productsAdapter;
     EventAdapter eventAdapter;
@@ -71,8 +78,8 @@ public class UserDashboardFragment extends Fragment {
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
         type = sharedPreferences.getInt("type",StringVariables.user);
+        type = StringVariables.ecell;
         name = view.findViewById(R.id.name_dashboard);
-        handleText = view.findViewById(R.id.handle_dashboard);
         specialisation = view.findViewById(R.id.specialisation_dashboard);
         location = view.findViewById(R.id.location_dashboard);
         submissions_text = view.findViewById(R.id.submissions_dashboard_textview);
@@ -92,6 +99,7 @@ public class UserDashboardFragment extends Fragment {
         add_submission=view.findViewById(R.id.add_submission);
         add_product=view.findViewById(R.id.add_product);
         add_idea=view.findViewById(R.id.add_idea);
+        fb = view.findViewById(R.id.fb);
         add_idea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,13 +167,135 @@ public class UserDashboardFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(handle);
+        if(type==StringVariables.user) {
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(handle);
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    UserData userData = dataSnapshot.getValue(UserData.class);
+                    Log.d("userData", userData.toString());
+                    updateUserData(userData);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+        else if(true||type==StringVariables.ecell){
+            Log.d("test","in loading xyz");
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("ecells").child(handle);
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    EcellData ecellData = dataSnapshot.getValue(EcellData.class);
+                    Log.e("ecellData",ecellData.toString());
+                    updateEcellData(ecellData);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+    }
+
+    private void updateEcellData(final EcellData ecellData) {
+        if(ecellData.getImage()!=null)
+        Glide
+                .with(getActivity())
+                .load(ecellData.getImage())
+                .asBitmap()
+                .centerCrop()
+                .placeholder(R.mipmap.ic_launcher)
+                .into(new BitmapImageViewTarget(image) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularDrawable = RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
+                        circularDrawable.setCircular(true);
+                        image.setImageDrawable(circularDrawable);
+                    }
+                })
+        ;
+        name.setText(ecellData.getInstituteName());
+        specialisation.setText(ecellData.getAbout());
+        location.setVisibility(View.GONE);
+        if(ecellData.getWebsite()==null)
+            web.setVisibility(View.GONE);
+        if(ecellData.getEmail()==null)
+            mail.setVisibility(View.GONE);
+        if(ecellData.getLinkedin()==null)
+            linkedIn.setVisibility(View.GONE);
+        github.setVisibility(View.GONE);
+        if(ecellData.getFb()==null)
+            fb.setVisibility(View.GONE);
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(ecellData.getWebsite()));
+                getActivity().startActivity(i);
+
+            }
+        });
+        mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("mailto:"+ecellData.getEmail()));
+                getActivity().startActivity(i);
+            }
+        });
+        linkedIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(ecellData.getLinkedin()));
+                getActivity().startActivity(i);
+
+            }
+        });
+
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(ecellData.getFb()));
+                getActivity().startActivity(i);
+            }
+        });
+
+        if(ecellData.getSubmissions()!=null&&ecellData.getSubmissions().size()>0) {
+            submissions_text.setVisibility(View.VISIBLE);
+            submissions.setVisibility(View.VISIBLE);
+            ecellSubmissionsAdapter = new EcellSubmissionAdapter(getActivity());
+            submissions.setAdapter(ecellSubmissionsAdapter);
+            submissions.setLayoutManager(new LinearLayoutManager(getActivity()));
+            Iterator<String> stringIterator = ecellData.getSubmissions().iterator();
+            while (stringIterator.hasNext())
+                loadEcellSubmission(stringIterator.next());
+        }
+
+
+    }
+
+    private void loadEcellSubmission(final String next) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("submissions").child(next);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                UserData userData = dataSnapshot.getValue(UserData.class);
-                Log.d("userData", userData.toString());
-                updateData(userData);
+                SubmissionData submissionData = dataSnapshot.getValue(SubmissionData.class);
+                submissionData.handle=next;
+                if(userSubmissions!=null&&userSubmissions.size()>=1&&userSubmissions.get(0).title.equals(submissionData.title))
+                    ecellSubmissions.set(0,submissionData);
+                else if (submissionData != null && !ecellSubmissions.contains(submissionData)) {
+                    ecellSubmissions.add(submissionData);
+                }
+
+                ecellSubmissionsAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -175,13 +305,13 @@ public class UserDashboardFragment extends Fragment {
         });
     }
 
-    private void updateData(final UserData userData) {
+
+    private void updateUserData(final UserData userData) {
         skills = userData.skills;
         skillsAdapter.notifyDataSetChanged();
         specialisation.setText(userData.specialisation);
         location.setText(userData.location);
         name.setText(userData.name);
-        handleText.setText("@" + handle);
         eventAdapter = new EventAdapter();
         events.setAdapter(eventAdapter);
         events.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -210,7 +340,7 @@ public class UserDashboardFragment extends Fragment {
         if(userData.getGithub()==null)
             github.setVisibility(View.GONE);
         if(userData.getFb()==null)
-
+            fb.setVisibility(View.GONE);
         web.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,6 +375,14 @@ public class UserDashboardFragment extends Fragment {
                 i.setData(Uri.parse(userData.getGithub()));
                 startActivity(i);
 
+            }
+        });
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(userData.getFb()));
+                startActivity(i);
             }
         });
 
@@ -392,8 +530,16 @@ public class UserDashboardFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            EventsData eventsData = userEvents.get(position);
+        public void onBindViewHolder(final ViewHolder holder,final int position) {
+            final EventsData eventsData = userEvents.get(position);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse("http://:"+eventsData.getLink()));
+                    startActivity(i);
+                }
+            });
             holder.name.setText("Event name: " + eventsData.title);
             holder.venue.setText("Venue: " + eventsData.venue);
             holder.time.setText("Time: " + eventsData.time);
@@ -515,6 +661,82 @@ public class UserDashboardFragment extends Fragment {
                 super(itemView);
                 title = itemView.findViewById(R.id.submission_title);
                 status = itemView.findViewById(R.id.submission_status);
+            }
+        }
+    }
+    public class EcellSubmissionAdapter extends RecyclerView.Adapter<EcellSubmissionAdapter.ViewHolder> {
+
+        Context context;
+        public EcellSubmissionAdapter(Context context) {
+            this.context=context;
+        }
+        @Override
+        public EcellSubmissionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new EcellSubmissionAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.submission_approval_layout, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(final EcellSubmissionAdapter.ViewHolder holder, final int position) {
+            holder.title.setText(ecellSubmissions.get(position).title);
+            holder.department.setText("Category : "+ecellSubmissions.get(position).department);
+            holder.details.setText(ecellSubmissions.get(position).details);
+            holder.download.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(ecellSubmissions.get(position).getLink()!=null){
+                        // Download starts
+                        Toast.makeText(context,"Downloading File",Toast.LENGTH_SHORT).show();
+                        DownloadManager mManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                        Uri uri = Uri.parse(ecellSubmissions.get(position).getLink());
+                        DownloadManager.Request mrequest = new DownloadManager.Request(uri);
+                        mrequest.setTitle("Abstract "+ecellSubmissions.get(position).title);
+                        mrequest.setDescription("File Downloading...");
+                        mrequest.allowScanningByMediaScanner();
+                        mrequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                        mrequest.setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS,"Abstract "+ecellSubmissions.get(position).title);
+                        mManager.enqueue(mrequest);
+                    }
+                }
+            });
+            holder.approve.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("submissions").child(ecellSubmissions.get(position).handle);
+                    databaseReference.child("status").setValue("1");
+                    databaseReference.child("review").setValue(holder.review.getText().toString());
+                }
+            });
+            holder.reject.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("submissions").child(ecellSubmissions.get(position).handle);
+                    databaseReference.child("status").setValue("-1");
+                    databaseReference.child("review").setValue(holder.review.getText().toString());
+
+
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return ecellSubmissions.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder {
+            TextView department,title, details;
+            Button download,approve,reject;
+            EditText review;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                title = itemView.findViewById(R.id.submission_title_ecell);
+                department = itemView.findViewById(R.id.submission_department_ecell);
+                details = itemView.findViewById(R.id.submission_details_ecell);
+                download = itemView.findViewById(R.id.download_abstract);
+                approve = itemView.findViewById(R.id.approve_submission);
+                reject = itemView.findViewById(R.id.reject_submission);
+                review = itemView.findViewById(R.id.remarks_submission);
             }
         }
     }
