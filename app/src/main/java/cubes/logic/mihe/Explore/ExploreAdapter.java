@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,8 +50,34 @@ class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
       //  holder.explorer_layout.setLayoutParams(width/2,height/3);
-        holder.explorer_layout.setBackgroundColor(ContextCompat.getColor(context,getColor(position)));
+        holder.explorer_element_text.setBackgroundColor(ContextCompat.getColor(context,getColor(position)));
         holder.explorer_element_text.setText(list.get(position));
+        holder.explore_imageview.setImageResource(getBackground(position));
+    }
+
+    private int getBackground(int position) {
+        int data = R.mipmap.idea_p;
+        switch (position){
+            case 0:
+                data = R.mipmap.idea_p;
+                break;
+            case 1:
+                data = R.mipmap.skill_p;
+                break;
+            case 2:
+                data = R.mipmap.legal_p;
+                break;
+            case 3:
+                data = R.mipmap.business_p;
+                break;
+            case 4:
+                data = R.mipmap.market_p;
+                break;
+            case 5:
+                data = R.mipmap.funding_p;
+                break;
+        }
+        return data;
     }
 
     private int getColor(int i){
@@ -84,12 +111,12 @@ class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        LinearLayout explorer_layout;
         TextView explorer_element_text;
+        ImageView explore_imageview;
         public ViewHolder(View itemView) {
             super(itemView);
-            explorer_layout = itemView.findViewById(R.id.explorer_layout);
             explorer_element_text = itemView.findViewById(R.id.explorer_element_text);
+            explore_imageview = itemView.findViewById(R.id.explore_imageview);
             itemView.setOnClickListener(this);
         }
 

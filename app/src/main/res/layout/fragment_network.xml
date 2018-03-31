@@ -11,10 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter the skills/designation required"
+        android:textAppearance="?android:textAppearanceSmall"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/white_button"
         android:padding="12dp" />
 
     <android.support.v7.widget.RecyclerView

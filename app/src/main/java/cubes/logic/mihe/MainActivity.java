@@ -15,10 +15,13 @@ import android.view.MenuItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationViewPager;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 
 import cubes.logic.mihe.Feed.Feed;
+import cubes.logic.mihe.Services.FCMNotificationService;
+import cubes.logic.mihe.TemporaryActivities.Website_post;
 import cubes.logic.mihe.TemporaryActivities.events_post;
 import cubes.logic.mihe.TemporaryActivities.ideas_post;
 import cubes.logic.mihe.TemporaryActivities.motivation_post;
@@ -66,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.ideas_post:
                 startActivity(new Intent(getApplicationContext(),ideas_post.class));
                 break;
+            case R.id.website_post:
+                startActivity(new Intent(getApplicationContext(), Website_post.class));
+                break;
             default:
             return super.onOptionsItemSelected(item);
         }
@@ -78,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SharedPreferences sharedPreferences=getSharedPreferences("user",MODE_PRIVATE);
         String id=sharedPreferences.getString("id",null);
+        FirebaseMessaging.getInstance().subscribeToTopic("notifications");
 
 //        if(id==null) {
 //            startActivity(new Intent(MainActivity.this,RegistrationActivity.class));

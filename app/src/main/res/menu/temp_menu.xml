@@ -19,5 +19,8 @@
     <item
         android:id="@+id/ideas_post"
         android:title="IDEAS Post" />
+    <item
+        android:id="@+id/website_post"
+        android:title="WEBSITE Post" />
 
 </menu>

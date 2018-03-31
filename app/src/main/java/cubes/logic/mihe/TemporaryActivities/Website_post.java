@@ -16,28 +16,26 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import cubes.logic.mihe.Manifest;
 import cubes.logic.mihe.R;
 import cubes.logic.mihe.StringVariables;
 
 /**
- * Created by CREATOR on 3/22/2018.
+ * Created by CREATOR on 3/31/2018.
  */
 
-public class motivation_post extends AppCompatActivity{
+public class Website_post extends AppCompatActivity {
+
 
     private static final int READ_EXTERNAL_STORAGE = 1;
     ImageView motivation_post_imageview;
-    EditText motivation_post_textview,motivation_post_textview_link;
+    EditText motivation_post_textview,motivation_post_textview_link,motivation_post_desc_textview;
     Button motivation_post_button;
     private int SELECT_PICTURE = 2;
     private Uri uri=null;
@@ -45,7 +43,7 @@ public class motivation_post extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.motivation_post);
+        setContentView(R.layout.webbsite_post);
 
         init();
     }
@@ -55,6 +53,7 @@ public class motivation_post extends AppCompatActivity{
         motivation_post_textview = findViewById(R.id.motivation_post_textview);
         motivation_post_button = findViewById(R.id.motivation_post_button);
         motivation_post_textview_link = findViewById(R.id.motivation_post_textview_link);
+        motivation_post_desc_textview = findViewById(R.id.motivation_post_desc_textview);
 
         motivation_post_imageview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +67,7 @@ public class motivation_post extends AppCompatActivity{
             public void onClick(View view) {
                 final String name = motivation_post_textview.getText().toString();
                 final String link = motivation_post_textview_link.getText().toString();
+                final String desc = motivation_post_desc_textview.getText().toString();
                 if(uri!=null && !(name.isEmpty()) && !(link.isEmpty())){
                     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(StringVariables.WEBSITES).child("2").push();
                     StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(StringVariables.WEBSITES).child("2");
@@ -77,6 +77,7 @@ public class motivation_post extends AppCompatActivity{
                             String data = taskSnapshot.getDownloadUrl()+"";
                             databaseReference.child(StringVariables.NAME).setValue(name);
                             databaseReference.child(StringVariables.LINK).setValue(link);
+                            databaseReference.child(StringVariables.DESCRIPTION).setValue(desc);
                             databaseReference.child(StringVariables.IMAGE).setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
@@ -106,7 +107,7 @@ public class motivation_post extends AppCompatActivity{
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==READ_EXTERNAL_STORAGE&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+        if(requestCode==READ_EXTERNAL_STORAGE&&grantResults[0]== PackageManager.PERMISSION_GRANTED){
             open_gallery();
         }else{
             Toast.makeText(getApplicationContext(),"Access denied",Toast.LENGTH_SHORT).show();
