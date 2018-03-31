@@ -19,11 +19,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".TemporaryActivities.events_post" />
@@ -37,8 +33,13 @@
         <activity android:name=".CompetitionSubmissionActivity"></activity>
         <activity android:name=".PersonActivity"/>
 
-        <activity android:name=".SignIn.SignIn"
+        <activity android:name=".Splash"
            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Explore.ResourceActivities"
             android:screenOrientation="portrait"/>

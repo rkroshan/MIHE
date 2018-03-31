@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:padding="32dp"
-    android:gravity="bottom"
+    android:gravity="center"
     android:background="@drawable/splash_background"
     android:orientation="vertical">
 
@@ -12,9 +12,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="56dp"
         android:gravity="center"
+        android:layout_marginBottom="24dp"
         android:padding="8dp"
         android:orientation="horizontal">
 
@@ -48,48 +48,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Assisting Innovation"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="italic"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="64dp"
         android:textColor="#fff"/>
-
-    <Button
-        android:id="@+id/google_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textColor="#f79433"
-        android:textStyle="bold"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:background="@drawable/white_button"
-        android:text="SIGN WITH GOOGLE"/>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="#fff"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:text="By using Mihe you agree to Mihe's"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:text="Privacy Policy"/>
     </LinearLayout>
 
-</LinearLayout>

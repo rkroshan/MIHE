@@ -68,6 +68,7 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/background_with_shadow"
             android:padding="8dp"
+            android:textColor="#0f0"
             android:text="YES" />
 
         <Button

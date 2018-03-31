@@ -20,7 +20,6 @@ import cubes.logic.mihe.Explore.Explore_Fragments.resouces.resource_fragment.fun
 import cubes.logic.mihe.Explore.Explore_Fragments.resouces.resource_fragment.legal_foundation;
 import cubes.logic.mihe.Explore.Explore_Fragments.resouces.resource_fragment.market_exploration;*/
 import cubes.logic.mihe.Explore.Explore_Fragments.resouces.Resources;
-import cubes.logic.mihe.Explore.Explore_Fragments.resouces.resource_fragment.skill_training;
 import cubes.logic.mihe.R;
 
 /**
